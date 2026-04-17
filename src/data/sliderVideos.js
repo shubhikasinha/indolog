@@ -1,79 +1,72 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// ARTGRID HERO SLIDER CONFIGURATION
+// ARTGRID HERO SLIDER CONFIGURATION (PERSONALIZED)
 // ─────────────────────────────────────────────────────────────────────────────
-//
-// HOW TO GET ARTGRID CDN VIDEO URLS:
-// 1. Go to artgrid.io and log in to your account
-// 2. Search for a video (e.g. "freight logistics", "shipping port", "cargo")
-// 3. Open the video details page
-// 4. Right-click on the preview video player → "Copy Video Address"
-//    OR press F12 → Network tab → reload → filter by "mp4" → copy Request URL
-// 5. Paste the URL as the `src` below
-//
-// TIP: Use 1080p versions where available for best performance.
-//      Format: https://cdn.artgrid.io/assets/{id}/{filename}.mp4
-//
-// ─────────────────────────────────────────────────────────────────────────────
+// You can provide specific videos for different industries. 
+// If a user's industry is detected (e.g. Pharma), the slider will play the 
+// specific videos you provide for that industry. If no industry is detected, 
+// it plays the DEFAULT videos.
 
-const ARTGRID_SLIDES = [
-  {
-    type: 'video',
-    // REPLACE with your Artgrid CDN URL
-    src: 'PASTE_ARTGRID_VIDEO_URL_1_HERE',
-    alt: 'Container port — global freight operations',
-    // Optional poster image shown while video loads (Unsplash fallback)
-    poster: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=1920&auto=format&fit=crop'
-  },
-  {
-    type: 'video',
-    // REPLACE with your Artgrid CDN URL
-    src: 'PASTE_ARTGRID_VIDEO_URL_2_HERE',
-    alt: 'Air freight — cargo aircraft logistics',
-    poster: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?q=80&w=1920&auto=format&fit=crop'
-  },
-  {
-    type: 'video',
-    // REPLACE with your Artgrid CDN URL
-    src: 'PASTE_ARTGRID_VIDEO_URL_3_HERE',
-    alt: 'Warehouse — supply chain operations',
-    poster: 'https://images.unsplash.com/photo-1601332069535-f8a8f12a5a74?q=80&w=1920&auto=format&fit=crop'
-  }
-];
+export const PERSONALIZED_ARTGRID_VIDEOS = {
+  // ─── Default Videos (General Logistics) ───
+  default: [
+    { type: 'video', src: 'https://videos.pexels.com/video-files/3196009/3196009-uhd_2560_1440_25fps.mp4', alt: 'Container port' },
+    { type: 'video', src: 'https://videos.pexels.com/video-files/2169880/2169880-hd_1280_720_30fps.mp4', alt: 'Cargo ship' },
+  ],
+  
+  // ─── Industry: Fashion ───
+  fashion: [
+    { type: 'video', src: 'PASTE_FASHION_ARTGRID_URL_1_HERE', alt: 'Garment manufacturing' },
+    { type: 'video', src: 'PASTE_FASHION_ARTGRID_URL_2_HERE', alt: 'Textile warehouse' }
+  ],
 
-// ─────────────────────────────────────────────────────────────────────────────
-// FALLBACK: High-quality Unsplash images used until Artgrid URLs are filled in
-// (or if user has no Artgrid account)
-// ─────────────────────────────────────────────────────────────────────────────
-const IMAGE_FALLBACK_SLIDES = [
-  {
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2560&auto=format&fit=crop',
-    alt: 'Global freight container port'
-  },
-  {
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2560&auto=format&fit=crop',
-    alt: 'Aerial view container terminal'
-  },
-  {
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?q=80&w=2560&auto=format&fit=crop',
-    alt: 'Air cargo freight operations'
-  },
-  {
-    type: 'image',
-    src: 'https://images.unsplash.com/photo-1601332069535-f8a8f12a5a74?q=80&w=2560&auto=format&fit=crop',
-    alt: 'Global supply chain logistics'
-  }
-];
+  // ─── Industry: Pharma ───
+  pharma: [
+    { type: 'video', src: 'PASTE_PHARMA_ARTGRID_URL_1_HERE', alt: 'Cold chain logistics' },
+    { type: 'video', src: 'PASTE_PHARMA_ARTGRID_URL_2_HERE', alt: 'Medical supplies' }
+  ],
+
+  // ─── Industry: Electronics ───
+  electronics: [
+    { type: 'video', src: 'PASTE_ELECTRONICS_ARTGRID_URL_1_HERE', alt: 'Tech manufacturing' },
+    { type: 'video', src: 'PASTE_ELECTRONICS_ARTGRID_URL_2_HERE', alt: 'Circuit boards' }
+  ],
+
+  // ─── Industry: Automotive ───
+  automotive: [
+    { type: 'video', src: 'PASTE_AUTOMOTIVE_ARTGRID_URL_1_HERE', alt: 'Car assembly line' },
+    { type: 'video', src: 'PASTE_AUTOMOTIVE_ARTGRID_URL_2_HERE', alt: 'Automotive parts warehouse' }
+  ],
+
+  // ─── Industry: Marble & Stone ───
+  marble: [
+    { type: 'video', src: 'PASTE_MARBLE_ARTGRID_URL_1_HERE', alt: 'Marble quarry' },
+    { type: 'video', src: 'PASTE_MARBLE_ARTGRID_URL_2_HERE', alt: 'Heavy lifting crane' }
+  ]
+};
 
 // ─────────────────────────────────────────────────────────────────────────────
-// EXPORT: Automatically uses Artgrid if URLs are set, otherwise falls back
+// IMAGE FALLBACKS
 // ─────────────────────────────────────────────────────────────────────────────
-const isArtgridConfigured = ARTGRID_SLIDES.every(
-  (s) => s.src && !s.src.startsWith('PASTE_')
-);
+// Used if Artgrid videos are not filled out yet.
 
-export const HERO_SLIDES = isArtgridConfigured
-  ? ARTGRID_SLIDES
-  : IMAGE_FALLBACK_SLIDES;
+export const PERSONALIZED_IMAGE_FALLBACKS = {
+  default: [
+    { type: 'image', src: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2560&auto=format&fit=crop', alt: 'Port' },
+    { type: 'image', src: 'https://images.unsplash.com/photo-1601332069535-f8a8f12a5a74?q=80&w=2560&auto=format&fit=crop', alt: 'Warehouse' }
+  ],
+  fashion: [
+    { type: 'image', src: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=2560&auto=format&fit=crop', alt: 'Fashion racks' },
+  ],
+  pharma: [
+    { type: 'image', src: 'https://images.unsplash.com/photo-1585435557343-3b092031a831?q=80&w=2070&auto=format&fit=crop', alt: 'Medical supplies' },
+  ],
+  electronics: [
+    { type: 'image', src: 'https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop', alt: 'Circuit boards' },
+  ],
+  automotive: [
+    { type: 'image', src: 'https://images.unsplash.com/photo-1563720360172-67b8f3dce741?q=80&w=2070&auto=format&fit=crop', alt: 'Automotive parts' },
+  ],
+  marble: [
+    { type: 'image', src: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop', alt: 'Stone quarry' },
+  ]
+};
