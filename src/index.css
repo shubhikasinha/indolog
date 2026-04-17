@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-outfit bg-white text-text;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-navy;
+    border-radius: 2px;
+  }
+
+  .section-h2 {
+    @apply font-lora text-[clamp(2rem,3vw,2.8rem)] tracking-tight text-text mb-4 leading-tight;
+  }
+  .section-h2 em {
+    @apply not-italic text-navy font-medium;
+  }
+  .section-sub {
+    @apply text-[15px] text-text-soft leading-relaxed max-w-[560px] font-light;
+  }
+  .tag-line {
+    @apply inline-flex items-center gap-2.5 text-[11px] tracking-[0.2em] uppercase font-semibold mb-3.5;
+  }
+  .tag-line::before {
+    content: '';
+    @apply w-7 h-[2px] block;
+  }
+}
