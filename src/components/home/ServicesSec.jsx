@@ -132,8 +132,9 @@ export default function ServicesSec() {
               </div>
            </div>
            
-           <div className="w-full lg:w-1/2 relative min-h-[350px] overflow-hidden order-1 lg:order-2 self-stretch bg-slate">
-             <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=2070&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Core Services Logistics Setup" />
+           <div className="w-full lg:w-1/2 relative min-h-[380px] overflow-hidden order-1 lg:order-2 self-stretch bg-slate">
+             <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?q=80&w=2070&auto=format&fit=crop" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 hover:scale-105" alt="Air freight logistics operations" />
+             <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
            </div>
         </div>
 

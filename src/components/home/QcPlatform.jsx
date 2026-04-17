@@ -80,7 +80,7 @@ export default function QcPlatform() {
         <div className="flex flex-col gap-6">
           <div className="grid grid-cols-2 grid-rows-2 gap-[3px] aspect-square w-full">
             <div className="col-span-2 relative group overflow-hidden bg-white/5">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1586528116311-ad8ae7c8c4a4?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center" />
+              <div className="absolute inset-0 bg-[url(https://images.unsplash.com/photo-1700727448575-6f1680cd7d75?q=80&w=1331&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)] bg-cover bg-center" />
               <div className="absolute inset-0 bg-[#1e2870]/30 transition-colors duration-300 group-hover:bg-[#1e2870]/10" />
             </div>
             <div className="relative group overflow-hidden bg-white/5">

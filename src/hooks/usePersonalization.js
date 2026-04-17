@@ -1,6 +1,7 @@
 // ─── IPLocate Personalization Hook ───────────────────────────────────────────
 // Fetches once per browser session (cached in sessionStorage).
 // Non-blocking: returns defaults immediately, resolves asynchronously.
+import { HERO_SLIDES } from '../data/sliderVideos';
 
 const CACHE_KEY = 'indolog_iplocate_v1';
 const IPLOCATE_URL = 'https://iplocate.io/api/lookup/';
@@ -38,138 +39,61 @@ const INDUSTRY_KEYWORDS = {
   ]
 };
 
-// ─── Location → Hero slide config ────────────────────────────────────────────
-// Each entry: { label, slides: [{ type, src, alt }] }
-const GEO_SLIDE_MAP = [
+// ─── Geo label map (text-only personalization) ────────────────────────────────
+// Slides are ALWAYS from sliderVideos.js (Artgrid or fallback images).
+// Only the city label badge and hero headline adapt per geo.
+const GEO_LABEL_MAP = [
   {
     match: ({ city, subdivision }) =>
       /new delhi|delhi/i.test(city) || /delhi/i.test(subdivision),
-    label: 'New Delhi',
-    slides: [
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=2070&auto=format&fit=crop',
-        alt: 'India Gate, New Delhi'
-      },
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1597517697687-3bd9cd5fd7ac?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Red Fort, Delhi'
-      },
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1526711657229-e7e080ed7aa1?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Delhi Cargo Hub'
-      }
-    ]
+    label: 'New Delhi'
   },
   {
     match: ({ city, subdivision }) =>
       /mumbai|bombay/i.test(city) || /maharashtra/i.test(subdivision),
-    label: 'Mumbai',
-    slides: [
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1566552881560-0be862a7c445?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Gateway of India, Mumbai'
-      },
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1529253355930-ddbe423a2ac7?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Mumbai port'
-      }
-    ]
+    label: 'Mumbai'
   },
   {
     match: ({ city, subdivision }) =>
       /chennai|madras/i.test(city) || /tamil/i.test(subdivision),
-    label: 'Chennai',
-    slides: [
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1568454537842-d933259bb258?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Chennai port & city'
-      }
-    ]
+    label: 'Chennai'
   },
   {
     match: ({ city, subdivision }) =>
       /kolkata|calcutta/i.test(city) || /west bengal/i.test(subdivision),
-    label: 'Kolkata',
-    slides: [
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1536421469767-80559bb6f5e1?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Howrah Bridge, Kolkata'
-      }
-    ]
+    label: 'Kolkata'
   },
   {
     match: ({ city, subdivision }) =>
       /bangalore|bengaluru/i.test(city) || /karnatak/i.test(subdivision),
-    label: 'Bengaluru',
-    slides: [
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1595658658481-d53d3f999875?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Bengaluru tech city skyline'
-      }
-    ]
+    label: 'Bengaluru'
   },
   {
     match: ({ subdivision }) => /rajasthan/i.test(subdivision),
-    label: 'Rajasthan',
-    slides: [
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1477587458883-47145ed6736c?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Rajasthan marble region'
-      }
-    ]
+    label: 'Rajasthan'
   },
-  // International
+  {
+    match: ({ city }) => /milan|milano/i.test(city),
+    label: 'Milan'
+  },
+  {
+    match: ({ city }) => /frankfurt/i.test(city),
+    label: 'Frankfurt'
+  },
   {
     match: ({ country_code }) => !/^IN$/i.test(country_code),
-    label: null, // use country name
-    slides: [
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=2070&auto=format&fit=crop',
-        alt: 'Global freight international'
-      },
-      {
-        type: 'image',
-        src: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop',
-        alt: 'International shipping containers'
-      }
-    ]
+    label: null // falls back to country name
   }
 ];
 
-// Default slides (videos) when geo is unknown
-const DEFAULT_SLIDES = [
-  {
-    type: 'video',
-    src: 'https://cdn.davinci.ai/assets/Giant_Product_d9a6e38ef5/Giant_Product_d9a6e38ef5.mp4',
-    alt: 'Logistics operations'
-  },
-  {
-    type: 'video',
-    src: 'https://storage.googleapis.com/davinciweb-b8892.appspot.com/v2/images/homepage/home-video-generator.webm',
-    alt: 'Freight forwarding'
-  },
-  {
-    type: 'video',
-    src: 'https://cdn.davinci.ai/assets/Macro_Scene_bbbeda81b0/Macro_Scene_bbbeda81b0.mp4',
-    alt: 'Supply chain'
-  }
-];
+// ─── Default slides — from centralized config (Artgrid or image fallback) ──
+const DEFAULT_SLIDES = HERO_SLIDES;
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function inferIndustry(ipData) {
   if (!ipData) return null;
-  
+
   const haystack = [
     ipData?.company?.name ?? '',
     ipData?.company?.type ?? '',
@@ -185,21 +109,15 @@ function inferIndustry(ipData) {
   return null;
 }
 
-function resolveSlides(geo) {
-  if (!geo) return DEFAULT_SLIDES;
-  
-  for (const entry of GEO_SLIDE_MAP) {
-    if (entry.match(geo)) {
-      return entry.slides;
-    }
-  }
+// Slides are ALWAYS the Artgrid/image config — geo does not change visuals
+function resolveSlides() {
   return DEFAULT_SLIDES;
 }
 
 function resolveGeoLabel(geo) {
   if (!geo) return null;
-  
-  for (const entry of GEO_SLIDE_MAP) {
+
+  for (const entry of GEO_LABEL_MAP) {
     if (entry.match(geo)) {
       return entry.label ?? geo.country ?? null;
     }
@@ -249,7 +167,7 @@ export async function fetchPersonalization() {
     };
 
     const industry = inferIndustry(data);
-    const slides = resolveSlides(geo);
+    const slides = resolveSlides();
     const geoLabel = resolveGeoLabel(geo);
 
     const result = { geo, company, industry, slides, geoLabel, loading: false };
@@ -263,7 +181,6 @@ export async function fetchPersonalization() {
 
   } catch (err) {
     clearTimeout(timeoutId);
-    // Graceful fallback — never crash
     if (err.name !== 'AbortError') {
       console.warn('[Indolog] IPLocate unavailable, using defaults.', err.message);
     }

@@ -19,7 +19,7 @@ const teasers = [
     title: 'Freight Mastery',
     desc: 'Sea, air, and road freight configured to your specific scale and compliance needs.',
     cta: 'Explore',
-    img: 'https://images.unsplash.com/photo-1586528116311-ad8ae7c8c4a4?q=80&w=2070&auto=format&fit=crop',
+    img: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?q=80&w=2070&auto=format&fit=crop',
     industryDesc: {
       pharma: 'GDP-compliant cold chain air & sea freight with full documentation.',
       fashion: 'GOH air containers & import console from Italy and Frankfurt.',
@@ -58,7 +58,7 @@ const teasers = [
     title: 'India-Wide Presence',
     desc: '7 offices across India connecting you securely to 50+ countries worldwide.',
     cta: 'View',
-    img: 'https://images.unsplash.com/photo-1556740758-90de374c12ad?q=80&w=2070&auto=format&fit=crop',
+    img: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=2070&auto=format&fit=crop',
     industryDesc: {}
   },
 ];

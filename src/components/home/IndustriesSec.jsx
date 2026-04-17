@@ -81,7 +81,7 @@ const industryContent = [
       'Export from Rajasthan and Gujarat ports',
       'Pre-shipment photo documentation included'
     ],
-    image: 'https://images.unsplash.com/photo-1620241608701-94ef138c7ea9?q=80&w=1974&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop'
   }
 ];
 
