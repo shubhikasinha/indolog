@@ -1,7 +1,7 @@
 // ─── IPLocate Personalization Hook ───────────────────────────────────────────
 // Fetches once per browser session (cached in sessionStorage).
 // Non-blocking: returns defaults immediately, resolves asynchronously.
-import { HERO_SLIDES } from '../data/sliderVideos';
+import { PERSONALIZED_ARTGRID_VIDEOS, PERSONALIZED_IMAGE_FALLBACKS } from '../data/sliderVideos';
 
 const CACHE_KEY = 'indolog_iplocate_v1';
 const IPLOCATE_URL = 'https://iplocate.io/api/lookup/';
@@ -40,54 +40,17 @@ const INDUSTRY_KEYWORDS = {
 };
 
 // ─── Geo label map (text-only personalization) ────────────────────────────────
-// Slides are ALWAYS from sliderVideos.js (Artgrid or fallback images).
-// Only the city label badge and hero headline adapt per geo.
 const GEO_LABEL_MAP = [
-  {
-    match: ({ city, subdivision }) =>
-      /new delhi|delhi/i.test(city) || /delhi/i.test(subdivision),
-    label: 'New Delhi'
-  },
-  {
-    match: ({ city, subdivision }) =>
-      /mumbai|bombay/i.test(city) || /maharashtra/i.test(subdivision),
-    label: 'Mumbai'
-  },
-  {
-    match: ({ city, subdivision }) =>
-      /chennai|madras/i.test(city) || /tamil/i.test(subdivision),
-    label: 'Chennai'
-  },
-  {
-    match: ({ city, subdivision }) =>
-      /kolkata|calcutta/i.test(city) || /west bengal/i.test(subdivision),
-    label: 'Kolkata'
-  },
-  {
-    match: ({ city, subdivision }) =>
-      /bangalore|bengaluru/i.test(city) || /karnatak/i.test(subdivision),
-    label: 'Bengaluru'
-  },
-  {
-    match: ({ subdivision }) => /rajasthan/i.test(subdivision),
-    label: 'Rajasthan'
-  },
-  {
-    match: ({ city }) => /milan|milano/i.test(city),
-    label: 'Milan'
-  },
-  {
-    match: ({ city }) => /frankfurt/i.test(city),
-    label: 'Frankfurt'
-  },
-  {
-    match: ({ country_code }) => !/^IN$/i.test(country_code),
-    label: null // falls back to country name
-  }
+  { match: ({ city, subdivision }) => /new delhi|delhi/i.test(city) || /delhi/i.test(subdivision), label: 'New Delhi' },
+  { match: ({ city, subdivision }) => /mumbai|bombay/i.test(city) || /maharashtra/i.test(subdivision), label: 'Mumbai' },
+  { match: ({ city, subdivision }) => /chennai|madras/i.test(city) || /tamil/i.test(subdivision), label: 'Chennai' },
+  { match: ({ city, subdivision }) => /kolkata|calcutta/i.test(city) || /west bengal/i.test(subdivision), label: 'Kolkata' },
+  { match: ({ city, subdivision }) => /bangalore|bengaluru/i.test(city) || /karnatak/i.test(subdivision), label: 'Bengaluru' },
+  { match: ({ subdivision }) => /rajasthan/i.test(subdivision), label: 'Rajasthan' },
+  { match: ({ city }) => /milan|milano/i.test(city), label: 'Milan' },
+  { match: ({ city }) => /frankfurt/i.test(city), label: 'Frankfurt' },
+  { match: ({ country_code }) => !/^IN$/i.test(country_code), label: null }
 ];
-
-// ─── Default slides — from centralized config (Artgrid or image fallback) ──
-const DEFAULT_SLIDES = HERO_SLIDES;
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -109,9 +72,26 @@ function inferIndustry(ipData) {
   return null;
 }
 
-// Slides are ALWAYS the Artgrid/image config — geo does not change visuals
-function resolveSlides() {
-  return DEFAULT_SLIDES;
+// ─── Slides Resolution ───────────────────────────────────────────────────────
+// Uses industry-specific videos if user added Artgrid URLs, else falls back to images.
+function resolveSlides(industry) {
+  const isArtgridReady = (industryKey) => {
+    const list = PERSONALIZED_ARTGRID_VIDEOS[industryKey];
+    return list && list.length > 0 && list.every(s => !s.src.includes('PASTE_'));
+  };
+
+  const hasSpecificArtgrid = industry && isArtgridReady(industry);
+  const hasDefaultArtgrid = isArtgridReady('default');
+
+  if (hasSpecificArtgrid) {
+    return PERSONALIZED_ARTGRID_VIDEOS[industry];
+  } else if (hasDefaultArtgrid) {
+    return PERSONALIZED_ARTGRID_VIDEOS.default;
+  } else if (industry && PERSONALIZED_IMAGE_FALLBACKS[industry]) {
+    return PERSONALIZED_IMAGE_FALLBACKS[industry];
+  } else {
+    return PERSONALIZED_IMAGE_FALLBACKS.default;
+  }
 }
 
 function resolveGeoLabel(geo) {
@@ -125,31 +105,28 @@ function resolveGeoLabel(geo) {
   return geo.city || geo.country || null;
 }
 
+// Default export fallback
+export const DEFAULT_SLIDES = PERSONALIZED_IMAGE_FALLBACKS.default;
+
 // ─── Main fetch function ──────────────────────────────────────────────────────
 
 export async function fetchPersonalization() {
-  // 1. Return cached result immediately
   try {
     const cached = sessionStorage.getItem(CACHE_KEY);
-    if (cached) {
-      return JSON.parse(cached);
-    }
-  } catch (_) { /* sessionStorage unavailable */ }
+    if (cached) return JSON.parse(cached);
+  } catch (_) { /* ignore */ }
 
-  // 2. Fetch from IPLocate with abort timeout
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
   try {
     const apiKey = import.meta.env.VITE_IPLOCATE_KEY;
-    const url = apiKey
-      ? `${IPLOCATE_URL}?apikey=${apiKey}`
-      : IPLOCATE_URL;
+    const url = apiKey ? `${IPLOCATE_URL}?apikey=${apiKey}` : IPLOCATE_URL;
 
     const response = await fetch(url, { signal: controller.signal });
     clearTimeout(timeoutId);
 
-    if (!response.ok) throw new Error(`IPLocate responded ${response.status}`);
+    if (!response.ok) throw new Error(`IPLocate ${response.status}`);
 
     const data = await response.json();
 
@@ -167,23 +144,19 @@ export async function fetchPersonalization() {
     };
 
     const industry = inferIndustry(data);
-    const slides = resolveSlides();
+    const slides = resolveSlides(industry);
     const geoLabel = resolveGeoLabel(geo);
 
     const result = { geo, company, industry, slides, geoLabel, loading: false };
 
-    // 3. Cache in sessionStorage
     try {
       sessionStorage.setItem(CACHE_KEY, JSON.stringify(result));
-    } catch (_) { /* quota exceeded or private mode */ }
+    } catch (_) { /* ignore */ }
 
     return result;
 
   } catch (err) {
     clearTimeout(timeoutId);
-    if (err.name !== 'AbortError') {
-      console.warn('[Indolog] IPLocate unavailable, using defaults.', err.message);
-    }
     return {
       geo: null,
       company: null,
@@ -194,5 +167,3 @@ export async function fetchPersonalization() {
     };
   }
 }
-
-export { DEFAULT_SLIDES };
