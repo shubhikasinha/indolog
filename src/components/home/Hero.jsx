@@ -54,7 +54,20 @@ const industries = [
 ];
 
 // Slide renderer — handles both image and video types
-function Slide({ slide, isActive }) {
+function Slide({ slide, isActive, onEnded }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (slide.type === 'video' && videoRef.current) {
+      if (isActive) {
+        videoRef.current.currentTime = 0;
+        videoRef.current.play().catch(() => {});
+      } else {
+        videoRef.current.pause();
+      }
+    }
+  }, [isActive, slide.type]);
+
   const cls = `absolute inset-0 w-full h-full object-cover transition-opacity duration-[1800ms] ${
     isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
   }`;
@@ -62,8 +75,10 @@ function Slide({ slide, isActive }) {
   if (slide.type === 'video') {
     return (
       <video
+        ref={videoRef}
         src={slide.src}
-        autoPlay loop muted playsInline
+        muted playsInline
+        onEnded={isActive ? onEnded : undefined}
         className={cls}
         aria-label={slide.alt}
       />
@@ -89,18 +104,22 @@ export default function Hero() {
   const [personalized, setPersonalized] = useState(false);
   const timerRef = useRef(null);
 
-  // Auto-advance slides
-  const resetTimer = () => {
-    clearInterval(timerRef.current);
-    timerRef.current = setInterval(() => {
-      setActiveIdx((prev) => (prev + 1) % slides.length);
-    }, 9000);
+  const advanceSlide = () => {
+    setActiveIdx((prev) => (prev + 1) % slides.length);
   };
 
+  // Auto-advance slides: intervals for images, onEnded for videos
   useEffect(() => {
-    resetTimer();
+    clearInterval(timerRef.current);
+    const currentSlide = slides[activeIdx];
+    
+    // Only use interval if it's an image. Videos will trigger advanceSlide via onEnded.
+    // Also provide a fallback 12s timer just in case a video freezes or fails to load
+    const duration = currentSlide?.type === 'video' ? 25000 : 7000;
+    
+    timerRef.current = setInterval(advanceSlide, duration);
     return () => clearInterval(timerRef.current);
-  }, [slides]);
+  }, [activeIdx, slides]);
 
   // When personalization resolves, update industry & animate in
   useEffect(() => {
@@ -118,7 +137,6 @@ export default function Hero() {
 
   const handleSlideClick = (idx) => {
     setActiveIdx(idx);
-    resetTimer();
   };
 
   return (
@@ -128,7 +146,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 bg-navy-dark">
         <AnimatePresence>
           {slides.map((slide, idx) => (
-            <Slide key={`${slide.src}-${idx}`} slide={slide} isActive={idx === activeIdx} />
+            <Slide key={`${slide.src}-${idx}`} slide={slide} isActive={idx === activeIdx} onEnded={advanceSlide} />
           ))}
         </AnimatePresence>
         {/* Gradient veil */}

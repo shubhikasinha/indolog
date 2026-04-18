@@ -106,7 +106,7 @@ function resolveGeoLabel(geo) {
 }
 
 // Default export fallback
-export const DEFAULT_SLIDES = PERSONALIZED_IMAGE_FALLBACKS.default;
+export const DEFAULT_SLIDES = PERSONALIZED_ARTGRID_VIDEOS.default || PERSONALIZED_IMAGE_FALLBACKS.default;
 
 // ─── Main fetch function ──────────────────────────────────────────────────────
 

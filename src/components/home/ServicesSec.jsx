@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   FaShip, FaPlane, FaTruck, FaClipboardList, FaProjectDiagram, FaBoxOpen,
@@ -152,9 +153,9 @@ export default function ServicesSec() {
                   <FaHandshake className="text-5xl text-gold mb-4" />
                   <h3 className="font-lora text-xl text-navy mb-2">Need a custom solution?</h3>
                   <p className="text-[13px] text-text-soft mb-6 font-light">Our experts can tailor logistics precisely for your business processes.</p>
-                  <a href="/contact" className="text-[12px] font-bold tracking-[0.1em] uppercase px-6 py-3.5 bg-gold text-black hover:bg-gold-light transition-all">
+                  <Link to="/contact" className="text-[12px] font-bold tracking-[0.1em] uppercase px-6 py-3.5 bg-gold text-black hover:bg-gold-light transition-all">
                     Talk to an Expert
-                  </a>
+                  </Link>
                 </div>
               );
             }

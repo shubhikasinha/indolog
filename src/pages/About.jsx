@@ -10,17 +10,27 @@ export default function About() {
       />
       <div className="bg-white min-h-screen pb-16">
         <section className="py-24 px-6 md:px-12 max-w-[900px] mx-auto">
-        <div className="mb-16">
-          <div className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.2em] uppercase text-gold font-semibold mb-3.5">
-            <span className="w-7 h-[2px] bg-gold block"></span>
-            WHO WE ARE
+        <div className="flex flex-col md:flex-row gap-12 mb-16 items-center">
+          <div className="md:w-1/2">
+            <div className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.2em] uppercase text-gold font-semibold mb-3.5">
+              <span className="w-7 h-[2px] bg-gold block"></span>
+              WHO WE ARE
+            </div>
+            <h2 className="font-lora text-[clamp(2rem,3vw,2.8rem)] tracking-tight text-text leading-tight mb-6">
+              About <em className="italic text-navy font-medium">Indolog Logistics</em>
+            </h2>
+            <p className="text-[15px] text-text-soft font-light leading-[1.85] mb-4">
+              Indolog Logistics Pvt Ltd was incorporated in 2012 under the Companies Act, 1956. Since then, we have tailored logistics to meet unique business needs across India and beyond. From a single office in New Delhi, we have grown to 7 offices across India's major commercial cities, serving clients in 50+ countries.
+            </p>
           </div>
-          <h2 className="font-lora text-[clamp(2rem,3vw,2.8rem)] tracking-tight text-text leading-tight mb-6">
-            About <em className="italic text-navy font-medium">Indolog Logistics</em>
-          </h2>
-          <p className="text-[15px] text-text-soft font-light leading-[1.85] mb-4">
-            Indolog Logistics Pvt Ltd was incorporated in 2012 under the Companies Act, 1956. Since then, we have tailored logistics to meet unique business needs across India and beyond. From a single office in New Delhi, we have grown to 7 offices across India's major commercial cities, serving clients in 50+ countries.
-          </p>
+          <div className="md:w-1/2 relative min-h-[400px] w-full">
+            <img src="https://images.unsplash.com/photo-1586528116311-ad8ae7c8c4a4?q=80&w=2070&auto=format&fit=crop" alt="Indolog Team and Logistics" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]" />
+            <div className="absolute inset-0 bg-navy/10" />
+            <div className="absolute bottom-4 -left-6 bg-white p-6 shadow-xl hidden md:block">
+               <div className="text-4xl font-lora text-gold mb-1">10+</div>
+               <div className="text-[10px] tracking-[0.1em] text-navy font-bold uppercase">Years of Excellence</div>
+            </div>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 border-t border-border pt-12 mb-16">

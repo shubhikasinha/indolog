@@ -8,10 +8,12 @@ import About from './pages/About';
 import Offices from './pages/Offices';
 import Contact from './pages/Contact';
 import { PersonalizationProvider } from './context/PersonalizationContext';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
     <PersonalizationProvider>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
