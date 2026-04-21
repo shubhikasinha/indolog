@@ -5,6 +5,7 @@ import QcPlatform from '../components/home/QcPlatform';
 import WhyUs from '../components/home/WhyUs';
 import OfficesSec from '../components/home/OfficesSec';
 import CtaBand from '../components/home/CtaBand';
+import ProcessFlow from '../components/home/ProcessFlow';
 
 export default function Home() {
   return (
@@ -12,9 +13,10 @@ export default function Home() {
       <Hero />
       <Stats />
       <HomeTeasers />
+      <ProcessFlow />
       <QcPlatform />
-      <WhyUs />
       <OfficesSec />
+      <WhyUs />
       <CtaBand />
     </>
   );

@@ -149,10 +149,10 @@ export default function Hero() {
             <Slide key={`${slide.src}-${idx}`} slide={slide} isActive={idx === activeIdx} onEnded={advanceSlide} />
           ))}
         </AnimatePresence>
-        {/* Gradient veil */}
-        <div className="absolute inset-0 z-[11] bg-gradient-to-r from-[#0b0d19f5] via-[#0b0d19b0] to-[#0b0d1910]" />
+        {/* Gradient veil — kept light so video shows through */}
+        <div className="absolute inset-0 z-[11] bg-gradient-to-r from-[#0b0d19cc] via-[#0b0d1960] to-transparent" />
         {/* Bottom fade */}
-        <div className="absolute bottom-0 inset-x-0 h-32 z-[12] bg-gradient-to-t from-[#0b0d19] to-transparent" />
+        <div className="absolute bottom-0 inset-x-0 h-24 z-[12] bg-gradient-to-t from-[#0b0d19] to-transparent" />
       </div>
 
       {/* ── Main content ──────────────────────────────────────────── */}
@@ -206,10 +206,10 @@ export default function Hero() {
             )}
           </h1>
 
-          <p className="text-[15px] text-white/75 leading-[2.0] mb-10 font-light max-w-[480px]">
+          <p className="text-[14px] text-white/65 leading-[1.9] mb-8 font-light max-w-[420px]">
             {personalized && industry
               ? industries.find(i => i.id === industry)?.desc
-              : 'From New Delhi to 50+ countries. Comprehensive freight forwarding, precise QC inspection, and elite supply chain solutions.'
+              : 'Freight forwarding, QC inspection, and supply chain solutions — one trusted partner for India and 50+ countries.'
             }
           </p>
 
@@ -232,12 +232,12 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* Right — Industry switcher */}
+        {/* Right — Industry switcher (compact) */}
         <motion.div
           initial={{ opacity: 0, x: 24 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-          className="hidden lg:flex flex-col backdrop-blur-2xl bg-white/[0.04] border border-white/10 p-8 w-full max-w-[440px] relative"
+          className="hidden lg:flex flex-col backdrop-blur-2xl bg-white/[0.05] border border-white/10 p-5 w-full max-w-[340px] relative"
         >
           {/* Personalized indicator */}
           <AnimatePresence>
@@ -245,29 +245,27 @@ export default function Hero() {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="absolute -top-3 left-6 bg-gold text-black text-[9px] tracking-[0.15em] uppercase font-bold px-3 py-1"
+                className="absolute -top-3 left-4 bg-gold text-black text-[8px] tracking-[0.15em] uppercase font-bold px-2.5 py-0.5"
               >
-                Personalised for you
+                Personalised
               </motion.div>
             )}
           </AnimatePresence>
 
-          <div className="text-[9px] tracking-[0.28em] uppercase text-white/35 mb-5 font-bold">
-            Select your industry
-          </div>
+          <div className="text-[9px] tracking-[0.25em] uppercase text-white/35 mb-3 font-bold">Industry</div>
 
-          <div className="flex flex-wrap gap-2 mb-7">
+          <div className="flex flex-wrap gap-1.5 mb-5">
             {industries.map((ind) => (
               <button
                 key={ind.id}
                 onClick={() => setActiveIndustry(ind)}
-                className={`text-[11px] font-semibold px-3.5 py-1.5 flex items-center gap-1.5 transition-all duration-200 tracking-[0.06em] uppercase border ${
+                className={`text-[10px] font-semibold px-2.5 py-1 flex items-center gap-1 transition-all duration-200 tracking-[0.05em] uppercase border ${
                   activeIndustry.id === ind.id
                     ? 'bg-gold border-gold text-black'
-                    : 'border-white/20 text-white/55 hover:bg-white/8 hover:text-white'
+                    : 'border-white/20 text-white/50 hover:bg-white/8 hover:text-white'
                 }`}
               >
-                <span className="text-[10px]">{ind.icon}</span>
+                <span className="text-[9px]">{ind.icon}</span>
                 {ind.name}
               </button>
             ))}
@@ -276,22 +274,19 @@ export default function Hero() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeIndustry.id}
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.2 }}
             >
-              <h3 className="font-lora text-[1.35rem] text-white mb-2 leading-snug">
+              <h3 className="font-lora text-[1.1rem] text-white mb-1.5 leading-snug">
                 {activeIndustry.title}
               </h3>
-              <p className="text-[12.5px] text-white/65 leading-[1.85] mb-5">
-                {activeIndustry.desc}
-              </p>
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-1">
                 {activeIndustry.tags.map((tag, i) => (
                   <span
                     key={i}
-                    className="text-[10px] px-2.5 py-1 bg-white/8 border border-white/12 text-white/60 whitespace-nowrap tracking-[0.04em]"
+                    className="text-[9px] px-2 py-0.5 bg-white/8 border border-white/12 text-white/55 whitespace-nowrap tracking-[0.04em]"
                   >
                     {tag}
                   </span>

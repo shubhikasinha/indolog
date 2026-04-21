@@ -6,7 +6,7 @@ export default function About() {
       <InnerPageHero 
         title="Our Story" 
         subtitle="From a single office in New Delhi to a global logistics powerhouse." 
-        bgImage="https://images.unsplash.com/photo-1590496794008-383c2cdcd75c?q=80&auto=format&fit=crop" 
+        bgImage="https://uk.formswim.com/pages/our-story" 
       />
       <div className="bg-white min-h-screen pb-16">
         <section className="py-24 px-6 md:px-12 max-w-[900px] mx-auto">
@@ -24,7 +24,7 @@ export default function About() {
             </p>
           </div>
           <div className="md:w-1/2 relative min-h-[400px] w-full">
-            <img src="https://images.unsplash.com/photo-1586528116311-ad8ae7c8c4a4?q=80&w=2070&auto=format&fit=crop" alt="Indolog Team and Logistics" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]" />
+            <img src="us.jpeg" alt="Indolog Team and Logistics" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-[1.02]" />
             <div className="absolute inset-0 bg-navy/10" />
             <div className="absolute bottom-4 -left-6 bg-white p-6 shadow-xl hidden md:block">
                <div className="text-4xl font-lora text-gold mb-1">10+</div>
