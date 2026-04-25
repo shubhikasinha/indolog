@@ -160,8 +160,11 @@ export default function Hero() {
 
       {/* ── Slide backgrounds ─────────────────────────────────────── */}
       <div className="absolute inset-0 z-0 bg-navy-dark">
-        <AnimatePresence>
-          {slides.map((slide, idx) => (
+        {/* Only mount active + next slide — avoids buffering all videos at once */}
+        {slides.map((slide, idx) => {
+          const nextIdx = (activeIdx + 1) % slides.length;
+          if (idx !== activeIdx && idx !== nextIdx) return null;
+          return (
             <Slide 
               key={`${slide.src}-${idx}`} 
               slide={slide} 
@@ -169,8 +172,8 @@ export default function Hero() {
               onEnded={advanceSlide} 
               isMuted={isMuted}
             />
-          ))}
-        </AnimatePresence>
+          );
+        })}
         {/* Gradient veil — kept light so video shows through */}
         <div className="absolute inset-0 z-[11] bg-gradient-to-r from-[#0b0d19cc] via-[#0b0d1960] to-transparent" />
         {/* Bottom fade */}
