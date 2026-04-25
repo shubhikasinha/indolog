@@ -45,7 +45,6 @@ export default function Contact() {
                 <div className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold mb-1">PHONE</div>
                 <div className="text-[14px] text-text leading-[1.6] flex flex-col gap-1">
                   <a href="tel:+919266896322" className="text-navy font-medium hover:underline">+91-9266896322</a>
-                  <a href="tel:+9101164643313" className="text-navy font-medium hover:underline">+91-011-64643313</a>
                 </div>
               </div>
             </div>

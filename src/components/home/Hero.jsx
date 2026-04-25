@@ -54,22 +54,38 @@ const industries = [
 ];
 
 // Slide renderer — handles both image and video types
-function Slide({ slide, isActive, onEnded }) {
+function Slide({ slide, isActive, onEnded, isMuted }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (slide.type === 'video' && videoRef.current) {
+    const video = videoRef.current;
+    if (slide.type === 'video' && video) {
+      video.muted = isMuted;
       if (isActive) {
-        videoRef.current.currentTime = 0;
-        videoRef.current.play().catch(() => {});
+        try {
+          // Setting currentTime can throw if metadata isn't loaded yet on external videos
+          if (video.readyState >= 1) {
+            video.currentTime = 0;
+          }
+        } catch (err) {
+          console.warn('Could not reset video time:', err);
+        }
+        
+        const playPromise = video.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(() => {
+            // Auto-play was prevented or video not loaded, wait for canplay
+            video.addEventListener('canplay', () => video.play(), { once: true });
+          });
+        }
       } else {
-        videoRef.current.pause();
+        video.pause();
       }
     }
-  }, [isActive, slide.type]);
+  }, [isActive, slide.type, isMuted]);
 
   const cls = `absolute inset-0 w-full h-full object-cover transition-opacity duration-[1800ms] ${
-    isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+    isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
   }`;
 
   if (slide.type === 'video') {
@@ -77,7 +93,7 @@ function Slide({ slide, isActive, onEnded }) {
       <video
         ref={videoRef}
         src={slide.src}
-        muted playsInline
+        muted={isMuted} playsInline autoPlay={isActive} preload="metadata"
         onEnded={isActive ? onEnded : undefined}
         className={cls}
         aria-label={slide.alt}
@@ -146,7 +162,13 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 bg-navy-dark">
         <AnimatePresence>
           {slides.map((slide, idx) => (
-            <Slide key={`${slide.src}-${idx}`} slide={slide} isActive={idx === activeIdx} onEnded={advanceSlide} />
+            <Slide 
+              key={`${slide.src}-${idx}`} 
+              slide={slide} 
+              isActive={idx === activeIdx} 
+              onEnded={advanceSlide} 
+              isMuted={isMuted}
+            />
           ))}
         </AnimatePresence>
         {/* Gradient veil — kept light so video shows through */}
@@ -173,15 +195,15 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.2em] uppercase text-white/50 mb-3 font-medium"
+                className="inline-flex items-center gap-1.5 text-[20px] tracking-[0.2em] uppercase text-white/80 mb-3 font-bold"
               >
-                <HiLocationMarker className="text-gold text-sm" />
+                <HiLocationMarker className="text-gold text-m" />
                 Serving {geoLabel}
               </motion.div>
             )}
           </AnimatePresence>
 
-          <div className="inline-flex items-center gap-2.5 text-[10px] tracking-[0.28em] uppercase text-gold mb-6 font-bold">
+          <div className="inline-flex items-center gap-2.5 text-[12px] tracking-[0.28em] uppercase text-gold mb-6 font-bold">
             <span className="w-10 h-[1px] bg-gold block" />
             India's Premier Freight Partner
           </div>

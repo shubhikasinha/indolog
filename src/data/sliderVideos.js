@@ -9,9 +9,11 @@
 export const PERSONALIZED_ARTGRID_VIDEOS = {
   // ─── Default Videos (General Logistics) ───
   default: [
+    
+    { type: 'video', src: 's3.mp4', alt: 'Logistics operations' },
+    { type: 'video', src: 's4.mp4', alt: 'Global freight' },
     { type: 'video', src: 's1.mp4', alt: 'Logistics operations' },
     { type: 'video', src: 's2.mp4', alt: 'Global freight' },
-    // { type: 'video', src: 's3.mp4', alt: 'Container transit' },
   ],
   
   // ─── Industry: Fashion ───

@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { motion, useInView } from 'framer-motion';
 import {
   FaTruckLoading, FaSearch, FaPlane, FaGlobeAsia, FaHandshake
@@ -117,6 +117,22 @@ export default function ProcessFlow() {
   const headerRef = useRef(null);
   const headerInView = useInView(headerRef, { once: true, margin: '-80px' });
 
+  // Video: play from start when section scrolls into view
+  const videoRef = useRef(null);
+  const videoContainerRef = useRef(null);
+  const videoInView = useInView(videoContainerRef, { once: false, margin: '-10%' });
+
+  useEffect(() => {
+    const vid = videoRef.current;
+    if (!vid) return;
+    if (videoInView) {
+      vid.currentTime = 0;
+      vid.play().catch(() => {});
+    } else {
+      vid.pause();
+    }
+  }, [videoInView]);
+
   return (
     <section className="py-28 bg-[#0b0d19] relative overflow-hidden px-6 md:px-12">
 
@@ -164,15 +180,15 @@ export default function ProcessFlow() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: '-80px' }}
-            className="flex flex-col gap-2"
+            className="flex flex-col gap-2 order-last lg:order-first"
           >
             {steps.map((step, i) => (
               <StepCard key={step.num} step={step} index={i} />
             ))}
           </motion.div>
 
-          {/* Route Map */}
-          <div className="hidden lg:block sticky top-24">
+          {/* Route Map / Video */}
+          <div className="block lg:sticky top-24 order-first lg:order-last">
             <motion.div
               initial={{ opacity: 0, scale: 0.96 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -181,10 +197,10 @@ export default function ProcessFlow() {
               className="relative"
             >
               {/* Process video */}
-              <div className="relative w-full overflow-hidden rounded-xl">
+              <div ref={videoContainerRef} className="relative w-full overflow-hidden rounded-xl">
                 <video
+                  ref={videoRef}
                   src="/process.mp4"
-                  autoPlay
                   loop
                   muted
                   playsInline

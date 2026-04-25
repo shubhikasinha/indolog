@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { HiMenuAlt4, HiX } from 'react-icons/hi';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHome = location.pathname === '/';
 
@@ -59,10 +62,10 @@ export default function Navbar() {
           <Link to="/contact" className={linkClass('/contact')}>Contact</Link>
         </div>
 
-        <div className="flex items-center gap-2.5">
+        <div className="hidden md:flex items-center gap-2.5">
           <Link 
             to="/#track" 
-            className={`text-[13px] font-medium px-[18px] py-[9px] border-[1.5px] transition-all duration-200 tracking-[0.02em] hidden sm:block ${
+            className={`text-[13px] font-medium px-[18px] py-[9px] border-[1.5px] transition-all duration-200 tracking-[0.02em] hidden lg:block ${
               isSolid 
                 ? 'border-navy text-navy hover:bg-navy hover:text-white' 
                 : 'border-white/60 text-white hover:bg-white/15'
@@ -77,7 +80,55 @@ export default function Navbar() {
             Get a Quote
           </Link>
         </div>
+
+        {/* Mobile Hamburger */}
+        <button 
+          className={`md:hidden flex items-center justify-center p-2 z-[1001] transition-colors duration-300 ${isSolid || mobileMenuOpen ? 'text-navy' : 'text-white'}`}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          {mobileMenuOpen ? <HiX size={28} /> : <HiMenuAlt4 size={28} />}
+        </button>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {mobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 top-[72px] bg-white z-[999] flex flex-col px-6 py-8 border-t border-border overflow-y-auto"
+          >
+            <div className="flex flex-col gap-6">
+              <Link to="/" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Home</Link>
+              <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Services</Link>
+              <Link to="/qc-platform" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">QC Platform</Link>
+              <Link to="/industries" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Industries</Link>
+              <Link to="/offices" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Offices</Link>
+              <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Contact</Link>
+              
+              <div className="flex flex-col gap-4 mt-4">
+                <Link 
+                  to="/contact" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center font-bold tracking-[0.1em] uppercase py-4 bg-gold text-black"
+                >
+                  Get a Quote
+                </Link>
+                <Link 
+                  to="/#track" 
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-center font-medium tracking-[0.1em] uppercase py-4 border border-navy text-navy"
+                >
+                  Track Shipment
+                </Link>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

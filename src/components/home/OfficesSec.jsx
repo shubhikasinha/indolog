@@ -3,7 +3,7 @@ import { FaGlobeAsia } from 'react-icons/fa';
 const offices = [
   { city: 'MUMBAI', address: '315, Shivai Plaza, Marol Co-operative, Andheri (East), Mumbai-400059' },
   { city: 'CHENNAI', address: '5/90, Butt Road, St. Thomas Mount, Chennai-600016', contactLabel: 'Mr. Anupam', contact: '+91-8055083370' },
-  { city: 'KOLKATA', address: 'Suite 212, 2nd Floor, Ahiliya Complex, Rajarhat New Town, Kolkata-700156', contactLabel: 'Mr. Krishanu', contact: '+91-8017254468' },
+  { city: 'KOLKATA', address: 'Suite 212, 2nd Floor, Ahiliya Complex, Rajarhat New Town, Kolkata-700156' },
   { city: 'AHMEDABAD', address: '401, Sakar V, Near Mithakhali Railway Crossing, Ashram Road, Ahmedabad-380009' },
   { city: 'BANGALORE', address: '935/786, M.R. Mansion, B.B. Road, Kempe Gowda Circle, Yelahanka, Bangalore-560064' },
   { city: 'COIMBATORE', address: '67, Thiruvallur Street, Meenambakkam, Chennai-600027' },

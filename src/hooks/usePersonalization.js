@@ -3,7 +3,7 @@
 // Non-blocking: returns defaults immediately, resolves asynchronously.
 import { PERSONALIZED_ARTGRID_VIDEOS, PERSONALIZED_IMAGE_FALLBACKS } from '../data/sliderVideos';
 
-const CACHE_KEY = 'indolog_iplocate_v1';
+const CACHE_KEY = 'indolog_iplocate_v3';
 const IPLOCATE_URL = 'https://iplocate.io/api/lookup/';
 const FETCH_TIMEOUT_MS = 3000;
 
