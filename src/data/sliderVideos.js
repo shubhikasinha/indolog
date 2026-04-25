@@ -11,8 +11,9 @@ export const PERSONALIZED_ARTGRID_VIDEOS = {
   default: [
     
     { type: 'video', src: 's3.mp4', alt: 'Logistics operations' },
-    { type: 'video', src: 's4.mp4', alt: 'Global freight' },
+    { type: 'video', src: 's4.mp4', alt: 'Global freight', maxDuration: 10 },
     { type: 'video', src: 's1.mp4', alt: 'Logistics operations' },
+    { type: 'video', src: 's2.mp4', alt: 'Global freight' },
   ],
   
   // ─── Industry: Fashion ───

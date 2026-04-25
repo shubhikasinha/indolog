@@ -63,18 +63,13 @@ function Slide({ slide, isActive, onEnded, isMuted }) {
       video.muted = isMuted;
       if (isActive) {
         try {
-          // Setting currentTime can throw if metadata isn't loaded yet on external videos
-          if (video.readyState >= 1) {
-            video.currentTime = 0;
-          }
+          if (video.readyState >= 1) video.currentTime = 0;
         } catch (err) {
           console.warn('Could not reset video time:', err);
         }
-        
         const playPromise = video.play();
         if (playPromise !== undefined) {
           playPromise.catch(() => {
-            // Auto-play was prevented or video not loaded, wait for canplay
             video.addEventListener('canplay', () => video.play(), { once: true });
           });
         }
@@ -95,6 +90,11 @@ function Slide({ slide, isActive, onEnded, isMuted }) {
         src={slide.src}
         muted={isMuted} playsInline autoPlay={isActive} preload="metadata"
         onEnded={isActive ? onEnded : undefined}
+        onTimeUpdate={
+          isActive && slide.maxDuration
+            ? (e) => { if (e.target.currentTime >= slide.maxDuration) onEnded(); }
+            : undefined
+        }
         className={cls}
         aria-label={slide.alt}
       />
