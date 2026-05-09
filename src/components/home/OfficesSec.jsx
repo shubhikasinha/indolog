@@ -1,12 +1,48 @@
 import { FaGlobeAsia } from 'react-icons/fa';
 
 const offices = [
-  { city: 'MUMBAI', address: '315, Shivai Plaza, Marol Co-operative, Andheri (East), Mumbai-400059' },
-  { city: 'CHENNAI', address: '5/90, Butt Road, St. Thomas Mount, Chennai-600016', contactLabel: 'Mr. Anupam', contact: '+91-8055083370' },
-  { city: 'KOLKATA', address: 'Suite 212, 2nd Floor, Ahiliya Complex, Rajarhat New Town, Kolkata-700156' },
-  { city: 'AHMEDABAD', address: '401, Sakar V, Near Mithakhali Railway Crossing, Ashram Road, Ahmedabad-380009' },
-  { city: 'BANGALORE', address: '935/786, M.R. Mansion, B.B. Road, Kempe Gowda Circle, Yelahanka, Bangalore-560064' },
-  { city: 'COIMBATORE', address: '67, Thiruvallur Street, Meenambakkam, Chennai-600027' },
+  {
+    city: 'MUMBAI',
+    address: '#315, Shivaji Plaza, Marol Co-operative, Andheri (East), Mumbai-400059',
+    contactLabel: 'Arvind Kumar',
+    contact: '+91-9911666678',
+    email: 'mumbai@indologindia.com',
+  },
+  {
+    city: 'CHENNAI',
+    address: '11, Thiruneer Malai Main Road, Nagalkeni, Chrompet, Chennai-600044 (Near Reliance Mart)',
+    contactLabel: 'V. Ramesh',
+    contact: '+91-9965244222',
+    email: 'chennai@indologindia.com',
+  },
+  {
+    city: 'KOLKATA',
+    address: 'Suite No. 714, 7th Floor, PS Qube, Rajarhat New Town, Kolkata-700136',
+    contactLabel: 'Aninda Chakraborty',
+    contact: '+91-9212226303',
+    email: 'kolkata@indologindia.com',
+  },
+  {
+    city: 'AHMEDABAD',
+    address: '401, Sakar V, Near Mithakhali Railway Crossing, Ashram Road, Ahmedabad-380009',
+    contactLabel: 'Karishma Bisht',
+    contact: '+91-8595511364',
+    email: 'ahmedabad@indologindia.com',
+  },
+  {
+    city: 'HYDERABAD',
+    address: 'H No. 10-3-281/1/1/A, Khr. Nivas, Humayun Nagar, Mehdipatnam, Hyderabad-500008',
+    contactLabel: 'Monica Sharma',
+    contact: '+91-7838683199',
+    email: 'hyderabad@indologindia.com',
+  },
+  {
+    city: 'BANGALORE',
+    address: '#935/786, M.R. Mansion, B.B. Road, Kempe Gowda Circle, Yelahanka, Bangalore-560064',
+    contactLabel: 'Neha',
+    contact: '+91-8285436575',
+    email: 'bangalore@indologindia.com',
+  },
 ];
 
 const accreditations = [
@@ -50,8 +86,9 @@ export default function OfficesSec() {
               <h4 className="text-[13px] font-bold tracking-[0.08em] text-gold uppercase mb-1.5">{off.city}</h4>
               <p className="text-[12px] text-white/50 leading-[1.7] mb-2 font-light">{off.address}</p>
               {off.contact && (
-                <div className="text-[12px] text-white/70 font-medium">
-                  {off.contactLabel} &middot; {off.contact}
+                <div className="flex flex-col gap-0.5">
+                  <div className="text-[12px] text-white/70 font-medium">{off.contactLabel} &middot; {off.contact}</div>
+                  {off.email && <a href={`mailto:${off.email}`} className="text-[11px] text-gold/70 hover:text-gold transition-colors">{off.email}</a>}
                 </div>
               )}
             </div>

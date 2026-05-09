@@ -1,4 +1,4 @@
-import { FaMapPin, FaPhone, FaEnvelope, FaLink } from 'react-icons/fa';
+import { FaMapPin, FaPhone, FaEnvelope, FaLink, FaWhatsapp } from 'react-icons/fa';
 import InnerPageHero from '../components/InnerPageHero';
 
 export default function Contact() {
@@ -23,9 +23,15 @@ export default function Contact() {
                 Let's Move Your <em className="italic text-navy">Cargo Forward</em>
               </h2>
               <p className="text-[15px] text-text-soft font-light leading-[1.85]">
-                Our team responds within 2 hours on business days. Available 24/7 for urgent shipments.
+                Our team responds within 4 business hours. Available 24/7 for urgent shipments.
               </p>
+              {/* Response promise badge */}
+              <div className="mt-4 inline-flex items-center gap-2.5 bg-gold/10 border border-gold/30 px-4 py-2.5 rounded-sm">
+                <span className="w-2 h-2 bg-gold rounded-full animate-pulse shrink-0" />
+                <span className="text-[12px] font-semibold text-navy tracking-wide">We reply within 4 business hours</span>
+              </div>
             </div>
+
 
             <div className="flex gap-4">
               <div className="w-11 h-11 bg-navy shrink-0 flex items-center justify-center text-white mt-0.5">
@@ -61,6 +67,21 @@ export default function Contact() {
               </div>
             </div>
 
+            {/* WhatsApp */}
+            <div className="flex gap-4">
+              <div className="w-11 h-11 bg-[#25d366] shrink-0 flex items-center justify-center text-white mt-0.5">
+                <FaWhatsapp />
+              </div>
+              <div>
+                <div className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold mb-1">WHATSAPP</div>
+                <div className="text-[14px] text-text leading-[1.6]">
+                  <a href="https://wa.me/919266896322?text=Hi%20Indolog%2C%20I%27d%20like%20a%20quote%20for..." target="_blank" rel="noopener noreferrer" className="text-[#25d366] font-medium hover:underline">
+                    +91-9266896322 — Chat with us →
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <div className="flex gap-4">
               <div className="w-11 h-11 bg-navy shrink-0 flex items-center justify-center text-white mt-0.5">
                 <FaLink />
@@ -68,8 +89,8 @@ export default function Contact() {
               <div>
                 <div className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold mb-1">PORTALS</div>
                 <div className="text-[14px] text-text leading-[1.6] flex flex-col gap-1">
-                  <a href="#" className="text-navy font-medium hover:underline">Track Shipment &rarr;</a>
-                  <a href="https://app.fresatechnologies.com/ords/f?p=127:LOGIN_DESKTOP" target="_blank" rel="noopener noreferrer" className="text-navy font-medium hover:underline">Employee Login &rarr;</a>
+                  <span className="text-text-muted text-[13px] font-light">Shipment tracking: call or WhatsApp us with your AWB / B/L number and we'll respond within 1 hour.</span>
+                  <a href="https://app.fresatechnologies.com/ords/f?p=127:LOGIN_DESKTOP" target="_blank" rel="noopener noreferrer" className="text-navy font-medium hover:underline">Employee Login →</a>
                 </div>
               </div>
             </div>

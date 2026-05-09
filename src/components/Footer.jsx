@@ -11,6 +11,12 @@ export default function Footer() {
             <p className="text-[13px] text-white/40 leading-[1.8] max-w-[280px] mt-5 font-light">
               India's premier logistics and quality inspection partner since 2012. IATA &middot; FIATA &middot; AMTOI &middot; MTO certified. Authorised JCTrans channel partner.
             </p>
+            {/* Registration numbers */}
+            <div className="mt-5 flex flex-col gap-1">
+              <span className="text-[10px] text-white/25 font-mono">GSTIN: 07AACCI6274F1ZZ</span>
+              <span className="text-[10px] text-white/25 font-mono">IEC: AACCI6274F</span>
+              <span className="text-[10px] text-white/25 font-mono">CIN: U63090DL2012PTC237892</span>
+            </div>
           </div>
 
           <div>
@@ -42,7 +48,7 @@ export default function Footer() {
               <Link to="/about" className="text-[13px] text-white/50 transition-colors hover:text-gold font-light">About Indolog</Link>
               <Link to="/offices" className="text-[13px] text-white/50 transition-colors hover:text-gold font-light">Our Offices</Link>
               <Link to="/contact" className="text-[13px] text-white/50 transition-colors hover:text-gold font-light">Contact Us</Link>
-              <a href="#" className="text-[13px] text-white/50 transition-colors hover:text-gold font-light">Track Shipment</a>
+              <Link to="/contact" className="text-[13px] text-white/50 transition-colors hover:text-gold font-light">Track Shipment</Link>
               <a href="https://app.fresatechnologies.com/ords/f?p=127:LOGIN_DESKTOP" target="_blank" rel="noopener noreferrer" className="text-[13px] text-white/50 transition-colors hover:text-gold font-light">Employee Login</a>
             </div>
           </div>
@@ -53,11 +59,12 @@ export default function Footer() {
           <p className="text-[12px] text-white/25">
             &copy; {new Date().getFullYear()} Indolog Logistics Pvt Ltd. All rights reserved.
           </p>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3 justify-center">
             <span className="text-[10px] tracking-[0.1em] px-2.5 py-1 border border-white/10 text-white/30">IATA</span>
             <span className="text-[10px] tracking-[0.1em] px-2.5 py-1 border border-white/10 text-white/30">FIATA</span>
             <span className="text-[10px] tracking-[0.1em] px-2.5 py-1 border border-white/10 text-white/30">AMTOI</span>
             <span className="text-[10px] tracking-[0.1em] px-2.5 py-1 border border-white/10 text-white/30">MTO</span>
+            <span className="text-[10px] tracking-[0.1em] px-2.5 py-1 border border-white/10 text-white/30">JCTrans</span>
           </div>
         </div>
       </div>

@@ -190,7 +190,7 @@ export default function Hero() {
           transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
           className="text-white flex-1 flex flex-col justify-center max-w-[620px]"
         >
-          {/* Geo badge — appears after personalization resolves */}
+          {/* Geo badge — friendly connection framing, not intrusive city reveal */}
           <AnimatePresence>
             {personalized && geoLabel && (
               <motion.div
@@ -198,10 +198,12 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-1.5 text-[20px] tracking-[0.2em] uppercase text-white/80 mb-3 font-bold"
+                className="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-white/55 mb-4 font-semibold"
               >
-                <HiLocationMarker className="text-gold text-m" />
-                Serving {geoLabel}
+                <span className="w-5 h-[1px] bg-gold/60 block" />
+                Connecting {geoLabel}
+                <span className="text-gold/80">→</span>
+                to anywhere in the World since 2012
               </motion.div>
             )}
           </AnimatePresence>
@@ -212,7 +214,7 @@ export default function Hero() {
           </div>
 
           {/* Headline — personalized subtitle when industry detected */}
-          <h1 className="font-lora text-[clamp(2.6rem,5vw,4.4rem)] leading-[1.08] tracking-[-0.025em] mb-7 drop-shadow-lg">
+          <h1 className="font-lora text-[clamp(2.2rem,4.5vw,4rem)] leading-[1.1] tracking-[-0.025em] mb-7 drop-shadow-lg">
             {personalized && industry ? (
               <>
                 Precision{' '}
@@ -224,9 +226,9 @@ export default function Hero() {
               </>
             ) : (
               <>
-                Your Ultimate<br />
-                <em className="text-gold-light italic tracking-tight">Logistics Partner</em><br />
-                <span className="text-white/90">for Seamless Success</span>
+                Door-to-door freight<br />
+                <em className="text-gold-light italic tracking-tight">+ independent QC</em><br />
+                <span className="text-white/85 text-[0.82em]">One partner. One contract. Zero surprises.</span>
               </>
             )}
           </h1>
