@@ -11,6 +11,7 @@ const logisticsServices = [
     num: '01',
     icon: <FaShip />,
     name: 'Ocean Freight',
+    link: '/services/ocean-freight',
     desc: 'FCL and LCL across major global shipping lines. Competitive rates, reliable schedules, hazardous and oversized cargo.',
     pills: ['FCL', 'LCL', 'Hazardous', 'Oversized']
   },
@@ -18,6 +19,7 @@ const logisticsServices = [
     num: '02',
     icon: <FaPlane />,
     name: 'Air Freight',
+    link: '/services/air-freight',
     desc: 'Express and consolidated air cargo. Proprietary GOH steel containers for garments. ANA, Lufthansa, SriLankan.',
     pills: ['Express', 'Consolidated', 'GOH']
   },
@@ -25,6 +27,7 @@ const logisticsServices = [
     num: '03',
     icon: <FaTruck />,
     name: 'Road / Inland Haulage',
+    link: '/services/road-freight',
     desc: 'FTL and LTL across India. Single point of contact for all domestic and cross-border movements with GPS.',
     pills: ['FTL', 'LTL', 'Pan-India']
   },
@@ -32,6 +35,7 @@ const logisticsServices = [
     num: '04',
     icon: <FaClipboardList />,
     name: 'Customs Brokerage',
+    link: '/services/customs-brokerage',
     desc: 'License-based clearance — save significantly on duty. Expert compliance at all Indian ports.',
     pills: ['License-Based', 'Duty Savings', 'All Ports']
   },
@@ -39,6 +43,7 @@ const logisticsServices = [
     num: '05',
     icon: <FaProjectDiagram />,
     name: 'Multimodal Transport',
+    link: '/services/multimodal',
     desc: 'As a certified MTO, we integrate air, sea, rail and road under a single contract. End-to-end accountability.',
     pills: ['MTO Certified', 'Single Contract']
   },
@@ -46,6 +51,7 @@ const logisticsServices = [
     num: '06',
     icon: <FaBoxOpen />,
     name: 'Import Console',
+    link: '/services/import-console',
     desc: '10 weekly PMC consolidations from Milan and Frankfurt to Delhi, Mumbai, Kolkata and Chennai. Zero dest charges.',
     pills: ['Europe-India', '10 PMC/week', 'Zero Dest. Charges']
   }
@@ -160,8 +166,13 @@ export default function ServicesSec() {
               );
             }
 
+            const CardWrapper = svc.link ? Link : 'div';
             return (
-              <div key={idx} className="bg-white p-10 relative overflow-hidden group border-t-4 border-transparent hover:border-navy hover:bg-slate transition-all duration-300 cursor-pointer">
+              <CardWrapper
+                key={idx}
+                to={svc.link || undefined}
+                className="bg-white p-10 relative overflow-hidden group border-t-4 border-transparent hover:border-navy hover:bg-slate transition-all duration-300 cursor-pointer block"
+              >
                 <div className="font-outfit text-[11px] text-text-muted tracking-[0.15em] mb-6 font-bold group-hover:text-navy transition-colors">
                   {svc.num}
                 </div>
@@ -182,9 +193,9 @@ export default function ServicesSec() {
                   ))}
                 </div>
                 <div className="absolute bottom-6 font-bold text-[12px] tracking-[0.08em] text-navy uppercase opacity-0 transform translate-y-3 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 flex items-center gap-1.5">
-                  Learn more &rarr;
+                  {svc.link ? 'Learn more →' : 'Explore →'}
                 </div>
-              </div>
+              </CardWrapper>
             );
           })}
         </motion.div>

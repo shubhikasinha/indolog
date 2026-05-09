@@ -227,8 +227,8 @@ export default function Hero() {
             ) : (
               <>
                 Door-to-door freight<br />
-                <em className="text-gold-light italic tracking-tight">+ independent QC</em><br />
-                <span className="text-white/85 text-[0.82em]">One partner. One contract. Zero surprises.</span>
+                {/* <em className="text-gold-light italic tracking-tight">+ independent QC</em><br /> */}
+                <span className="text-white/85 text-[0.70em]">One partner. One contract. Zero surprises.</span>
               </>
             )}
           </h1>

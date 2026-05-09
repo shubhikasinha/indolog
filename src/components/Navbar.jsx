@@ -48,12 +48,12 @@ export default function Navbar() {
           <div className="relative group">
             <Link to="/services" className={linkClass('/services')}>Services ▾</Link>
             <div className="absolute top-[72px] left-0 min-w-[230px] bg-white border border-border shadow-[0_20px_60px_rgba(0,0,0,0.12)] py-2 opacity-0 pointer-events-none -translate-y-1.5 transition-all duration-200 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0">
-              <Link to="/services" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Ocean Freight</Link>
-              <Link to="/services" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Air Freight</Link>
-              <Link to="/services" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Road Freight</Link>
-              <Link to="/services" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Customs Brokerage</Link>
-              <Link to="/services" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Multimodal</Link>
-              <Link to="/services" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Import Console</Link>
+              <Link to="/services/ocean-freight" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Ocean Freight</Link>
+              <Link to="/services/air-freight" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Air Freight</Link>
+              <Link to="/services/road-freight" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Road Freight</Link>
+              <Link to="/services/customs-brokerage" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Customs Brokerage</Link>
+              <Link to="/services/multimodal" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Multimodal</Link>
+              <Link to="/services/import-console" className="block px-5 py-2.5 text-[13px] text-text-mid transition-all duration-150 hover:bg-slate hover:text-navy hover:pl-6">Import Console</Link>
             </div>
           </div>
           <Link to="/qc-platform" className={linkClass('/qc-platform')}>QC Platform</Link>
@@ -64,7 +64,7 @@ export default function Navbar() {
 
         <div className="hidden md:flex items-center gap-2.5">
           <Link 
-            to="/#track" 
+            to="https://track.fresatechnologies.com/ords/r/fresaportal1/fresaonlinetracking/tracking5060?p5060_tracking_key=282812857869380186081738286578788375454" 
             className={`text-[13px] font-medium px-[18px] py-[9px] border-[1.5px] transition-all duration-200 tracking-[0.02em] hidden lg:block ${
               isSolid 
                 ? 'border-navy text-navy hover:bg-navy hover:text-white' 
