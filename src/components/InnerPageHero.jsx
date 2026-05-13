@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-export default function InnerPageHero({ title, subtitle, bgImage, slides }) {
+export default function InnerPageHero({ title, subtitle, bgImage, slides, fullScreen = false }) {
   const [activeIdx, setActiveIdx] = useState(0);
 
   // Auto-advance when slides are provided
@@ -13,7 +13,7 @@ export default function InnerPageHero({ title, subtitle, bgImage, slides }) {
   }, [slides]);
 
   return (
-    <div className="relative pt-[180px] pb-[90px] bg-navy-dark overflow-hidden border-b-4 border-gold">
+    <div className={`relative bg-navy-dark overflow-hidden border-b-4 border-gold flex flex-col justify-center ${fullScreen ? 'min-h-screen pt-20' : 'pt-[180px] pb-[90px]'}`}>
 
       {/* ── Slideshow background ──────────────────────────────── */}
       {slides && slides.length > 0 ? (
