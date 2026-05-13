@@ -58,6 +58,7 @@ export default function Navbar() {
           </div>
           <Link to="/qc-platform" className={linkClass('/qc-platform')}>QC Platform</Link>
           <Link to="/industries" className={linkClass('/industries')}>Industries</Link>
+          <Link to="/about" className={linkClass('/about')}>About</Link>
           <Link to="/offices" className={linkClass('/offices')}>Offices</Link>
           <Link to="/contact" className={linkClass('/contact')}>Contact</Link>
         </div>
@@ -106,6 +107,7 @@ export default function Navbar() {
               <Link to="/services" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Services</Link>
               <Link to="/qc-platform" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">QC Platform</Link>
               <Link to="/industries" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Industries</Link>
+              <Link to="/about" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">About</Link>
               <Link to="/offices" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Offices</Link>
               <Link to="/contact" onClick={() => setMobileMenuOpen(false)} className="text-2xl font-lora text-navy border-b border-border pb-4">Contact</Link>
               

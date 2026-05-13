@@ -1,12 +1,27 @@
 import InnerPageHero from '../components/InnerPageHero';
 
+const STORY_SLIDES = [
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.16.48 PM.jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.16.57 PM (2).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.16.58 PM (1).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.16.59 PM (2).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.17.00 PM (1).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.17.03 PM (2).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.25.58 PM (1).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.26.01 PM.jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.26.08 PM (1).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.26.16 PM (1).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.26.16 PM (3).jpeg',
+  '/team/Indo Pics/final/WhatsApp Image 2026-05-09 at 1.34.22 PM (1).jpeg',
+];
+
 export default function About() {
   return (
     <>
-      <InnerPageHero 
-        title="Our Story" 
-        subtitle="From a single office in New Delhi to a global logistics powerhouse." 
-        bgImage="https://uk.formswim.com/pages/our-story" 
+      <InnerPageHero
+        title="Our Story"
+        subtitle="From a single office in New Delhi to a global logistics powerhouse."
+        slides={STORY_SLIDES}
       />
       <div className="bg-white min-h-screen pb-16">
         <section className="py-24 px-6 md:px-12 max-w-[900px] mx-auto">
