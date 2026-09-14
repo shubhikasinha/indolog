@@ -84,6 +84,16 @@ function Slide({ slide, isActive, onEnded, isMuted }) {
   }`;
 
   if (slide.type === 'video') {
+    // For cropBottom slides: anchor top, extend height past container so
+    // the bottom (where the AI watermark sits) is clipped by overflow:hidden
+    const videoStyle = slide.cropBottom
+      ? { top: 0, left: 0, right: 0, bottom: 'auto', width: '100%', height: '124%' }
+      : undefined;
+
+    const videoCls = `absolute w-full object-cover transition-opacity duration-[1800ms] ${
+      slide.cropBottom ? '' : 'inset-0 h-full'
+    } ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`;
+
     return (
       <video
         ref={videoRef}
@@ -95,7 +105,8 @@ function Slide({ slide, isActive, onEnded, isMuted }) {
             ? (e) => { if (e.target.currentTime >= slide.maxDuration) onEnded(); }
             : undefined
         }
-        className={cls}
+        className={videoCls}
+        style={videoStyle}
         aria-label={slide.alt}
       />
     );
