@@ -59,7 +59,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-[12px] text-white/25">
-            &copy; {new Date().getFullYear()} Indolog Logistics Pvt Ltd. All rights reserved.
+            &copy; {new Date().getFullYear()} Indolog Logistics Limited. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <Link to="/privacy" className="text-[11px] text-white/30 hover:text-white/60 transition-colors">Privacy Policy</Link>

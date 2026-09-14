@@ -227,7 +227,7 @@ export default function Hero() {
             ) : (
               <>
                 Door-to-door freight<br />
-                {/* <em className="text-gold-light italic tracking-tight">+ independent QC</em><br /> */}
+                <em className="text-gold-light italic tracking-tight">+ independent QC</em><br />
                 <span className="text-white/85 text-[0.70em]">One partner. One contract. Zero surprises.</span>
               </>
             )}
@@ -236,7 +236,7 @@ export default function Hero() {
           <p className="text-[14px] text-white/65 leading-[1.9] mb-8 font-light max-w-[420px]">
             {personalized && industry
               ? industries.find(i => i.id === industry)?.desc
-              : 'Freight forwarding, QC inspection, and supply chain solutions — one trusted partner for India and 50+ countries.'
+              : 'Freight forwarding + independent QC inspection — one trusted partner for India and 50+ countries. The only logistics company with its own 12,000 sq ft QC facility.'
             }
           </p>
 

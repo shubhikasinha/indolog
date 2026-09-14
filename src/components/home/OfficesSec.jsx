@@ -3,10 +3,10 @@ import { FaGlobeAsia } from 'react-icons/fa';
 const offices = [
   {
     city: 'MUMBAI',
-    address: '#315, Shivaji Plaza, Marol Co-operative, Andheri (East), Mumbai-400059',
+    address: 'Office No 316, 3rd Floor, Thapar Complex, Plot No 51, Sector 15, CBD Belapur, Navi Mumbai-400614',
     contactLabel: 'Arvind Kumar',
     contact: '+91-9911666678',
-    email: 'mumbai@indologindia.com',
+    email: 'cs@indologindia.com',
   },
   {
     city: 'CHENNAI',
@@ -20,7 +20,7 @@ const offices = [
     address: 'Suite No. 714, 7th Floor, PS Qube, Rajarhat New Town, Kolkata-700136',
     contactLabel: 'Aninda Chakraborty',
     contact: '+91-9212226303',
-    email: 'kolkata@indologindia.com',
+    email: 'aninda@indologindia.com',
   },
   {
     city: 'AHMEDABAD',
@@ -34,14 +34,14 @@ const offices = [
     address: 'H No. 10-3-281/1/1/A, Khr. Nivas, Humayun Nagar, Mehdipatnam, Hyderabad-500008',
     contactLabel: 'Monica Sharma',
     contact: '+91-7838683199',
-    email: 'hyderabad@indologindia.com',
+    email: 'monica@indologindia.com',
   },
   {
     city: 'BANGALORE',
     address: '#935/786, M.R. Mansion, B.B. Road, Kempe Gowda Circle, Yelahanka, Bangalore-560064',
     contactLabel: 'Neha',
     contact: '+91-8285436575',
-    email: 'bangalore@indologindia.com',
+    email: 'seaexpo@indologindia.com',
   },
 ];
 

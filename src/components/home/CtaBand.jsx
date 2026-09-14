@@ -77,6 +77,18 @@ export default function CtaBand() {
             +91-9266896322
           </a>
         </div>
+        <div className="hidden lg:flex items-center gap-3 border-l border-black/15 pl-8 ml-4">
+          <div className="text-left">
+            <div className="text-[9px] tracking-[0.18em] uppercase font-bold text-black/40 mb-1">Also explore</div>
+            <Link
+              to="/qc-platform"
+              className="text-[12px] font-bold tracking-[0.06em] uppercase text-black/70 hover:text-black transition-colors flex items-center gap-2"
+            >
+              <span className="w-2 h-2 bg-black/70 rounded-full" />
+              Our QC Platform →
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   );

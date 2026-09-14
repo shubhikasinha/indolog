@@ -13,7 +13,7 @@ export default function PrivacyPolicy() {
 
             <h2 className="font-lora text-[1.6rem] text-navy mb-4">1. Who We Are</h2>
             <p className="text-[14px] text-text-soft font-light leading-[1.9] mb-8">
-              Indolog Logistics Pvt Ltd ("Indolog", "we", "us") is a freight forwarding and quality inspection company registered in India. Our registered office is at Plot no. 249/1, Sector-24, Phase-2, Dhulsiras, Dwarka, New Delhi-110077. We are the data controller for personal data processed through this website.
+              Indolog Logistics Limited ("Indolog", "we", "us") is a freight forwarding and quality inspection company registered in India. Our registered office is at Plot no. 249/1, Sector-24, Phase-2, Dhulsiras, Dwarka, New Delhi-110077. We are the data controller for personal data processed through this website.
             </p>
 
             <h2 className="font-lora text-[1.6rem] text-navy mb-4">2. Data We Collect</h2>
@@ -62,7 +62,7 @@ export default function PrivacyPolicy() {
               For any privacy-related questions, contact our Data Protection point of contact:
             </p>
             <div className="bg-[#f5f4f0] p-5 text-[13px] text-text-soft">
-              Indolog Logistics Pvt Ltd<br />
+              Indolog Logistics Limited<br />
               Plot no. 249/1, Sector-24, Phase-2, Dhulsiras, Dwarka, New Delhi-110077<br />
               <a href="mailto:privacy@indologindia.com" className="text-navy hover:underline">privacy@indologindia.com</a>
             </div>

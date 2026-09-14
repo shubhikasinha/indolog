@@ -33,7 +33,7 @@ export default function About() {
                 About <em className="italic text-navy font-medium">Indolog Logistics</em>
               </h2>
               <p className="text-[15px] text-text-soft font-light leading-[1.85] mb-4">
-                Indolog Logistics Pvt Ltd was incorporated in 2012 under the Companies Act, 1956. Since then, we have tailored logistics to meet unique business needs across India and beyond. From a single office in New Delhi, we have grown to 7 offices across India's major commercial cities, serving clients in 50+ countries.
+                Indolog Logistics Limited was incorporated in 2012 under the Companies Act, 1956. Since then, we have tailored logistics to meet unique business needs across India and beyond. From a single office in New Delhi, we have grown to 7 offices across India's major commercial cities, serving clients in 50+ countries.
               </p>
             </div>
             <div className="md:w-1/2 relative min-h-[400px] w-full">
@@ -92,7 +92,7 @@ export default function About() {
             <div className="flex flex-col gap-5 max-w-[600px] text-[14px]">
               <div className="flex gap-4">
                 <div className="font-bold tracking-[0.1em] text-navy w-16 shrink-0 pt-0.5">2012</div>
-                <div className="text-text-soft font-light leading-relaxed">Indolog Logistics Pvt Ltd incorporated in New Delhi</div>
+                <div className="text-text-soft font-light leading-relaxed">Indolog Logistics Limited incorporated in New Delhi</div>
               </div>
               <div className="flex gap-4">
                 <div className="font-bold tracking-[0.1em] text-navy w-16 shrink-0 pt-0.5">2015</div>

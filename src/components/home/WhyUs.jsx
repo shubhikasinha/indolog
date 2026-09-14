@@ -1,18 +1,19 @@
 const cards = [
   {
     num: '01',
+    title: 'Zero Factory Influence QC',
+    desc: 'India\'s only independent 12,000 sq ft pre-shipment inspection facility. No contact between inspectors and suppliers. No bribery risk. Clients consistently save 20-25% on returns and rework.',
+    highlight: true,
+  },
+  {
+    num: '02',
     title: 'Global Partner Network',
     desc: 'Extensive network of overseas agents including WWPC World, 5Star Network, WTC Alliance, Innovative Freight Network and JCTrans (Authorised Channel Partner) — ensuring point-to-point shipping convenience globally.'
   },
   {
-    num: '02',
+    num: '03',
     title: 'Industry-Specialised Teams',
     desc: 'Deep expertise in RMG, pharma, auto and marble. Our QC teams, packers and logisticians are trained to the exact standards of major global fashion and manufacturing brands.'
-  },
-  {
-    num: '03',
-    title: 'Zero Factory Influence QC',
-    desc: 'Our inspection platform is completely independent. No contact between inspectors and suppliers. No pressure, no bribery risk. Clients consistently save 20-25% on returns and rework.'
   },
   {
     num: '04',
@@ -48,14 +49,32 @@ export default function WhyUs() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[1.5px] bg-border mt-12">
           {cards.map((card, idx) => (
-            <div key={idx} className="bg-white p-10 transition-colors hover:bg-slate group">
-              <div className="font-outfit font-mono text-[11px] font-bold text-gold tracking-[0.15em] mb-4">
+            <div
+              key={idx}
+              className={`p-10 transition-colors group relative ${
+                card.highlight
+                  ? 'bg-navy border-t-2 border-gold text-white hover:bg-navy/90'
+                  : 'bg-white hover:bg-slate'
+              }`}
+            >
+              {card.highlight && (
+                <div className="absolute top-4 right-4 text-[9px] tracking-[0.15em] uppercase font-bold text-gold border border-gold/40 px-2 py-0.5">
+                  Key Differentiator
+                </div>
+              )}
+              <div className={`font-outfit font-mono text-[11px] font-bold tracking-[0.15em] mb-4 ${
+                card.highlight ? 'text-gold' : 'text-gold'
+              }`}>
                 {card.num}
               </div>
-              <h3 className="font-outfit font-semibold text-[1.05rem] text-navy mb-2 relative">
+              <h3 className={`font-outfit font-semibold text-[1.05rem] mb-2 ${
+                card.highlight ? 'text-white' : 'text-navy'
+              }`}>
                 {card.title}
               </h3>
-              <p className="text-[13px] text-text-soft leading-[1.8] font-light">
+              <p className={`text-[13px] leading-[1.8] font-light ${
+                card.highlight ? 'text-white/60' : 'text-text-soft'
+              }`}>
                 {card.desc}
               </p>
             </div>

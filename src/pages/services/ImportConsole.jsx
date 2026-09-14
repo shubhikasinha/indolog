@@ -15,7 +15,7 @@ export default function ImportConsole() {
       <InnerPageHero
         title="Import Console"
         subtitle="Consolidated imports from Europe and Asia — one collection, one shipment, one delivery to your door."
-        bgImage="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&auto=format&fit=crop"
+        bgImage="https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&auto=format&fit=crop"
       />
       <div className="bg-[#f5f4f0]">
         <section className="max-w-[1280px] mx-auto px-6 md:px-12 py-24">
