@@ -25,7 +25,7 @@ export default function Navbar() {
   }`;
 
   const linkClass = (path) => {
-    const isActive = location.pathname === path;
+    const isActive = location.pathname === path || (path !== '/' && location.pathname.startsWith(path));
     const base = "text-[13px] font-medium tracking-[0.03em] px-[18px] h-[72px] flex items-center border-b-[3px] transition-all duration-200 relative";
     if (isSolid) {
       if (isActive) return `${base} text-navy border-navy`;

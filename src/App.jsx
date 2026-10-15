@@ -18,11 +18,13 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import Insights from './pages/Insights';
 import { PersonalizationProvider } from './context/PersonalizationContext';
 import ScrollToTop from './components/ScrollToTop';
+import Chatbot from './components/Chatbot';
 
 function App() {
   return (
     <PersonalizationProvider>
       <ScrollToTop />
+      <Chatbot />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

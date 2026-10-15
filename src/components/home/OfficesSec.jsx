@@ -11,9 +11,9 @@ const offices = [
   {
     city: 'CHENNAI',
     address: '11, Thiruneer Malai Main Road, Nagalkeni, Chrompet, Chennai-600044 (Near Reliance Mart)',
-    contactLabel: 'V. Ramesh',
-    contact: '+91-9965244222',
-    email: 'chennai@indologindia.com',
+    contactLabel: 'Anupam Sarkar',
+    contact: '+91-80560 83370',
+    email: 'anupam@indologindia.com',
   },
   {
     city: 'KOLKATA',
@@ -24,29 +24,36 @@ const offices = [
   },
   {
     city: 'AHMEDABAD',
-    address: '401, Sakar V, Near Mithakhali Railway Crossing, Ashram Road, Ahmedabad-380009',
-    contactLabel: 'Karishma Bisht',
-    contact: '+91-8595511364',
+    address: '510-511, Fifth Floor, ECHELON, B/S Satyadeep Heights, Nr. Orchid Whitefield, Makarba, Ahmedabad-380051',
+    contactLabel: 'Vijaya',
+    contact: '+91-88252 17745',
     email: 'ahmedabad@indologindia.com',
   },
   {
     city: 'HYDERABAD',
-    address: 'H No. 10-3-281/1/1/A, Khr. Nivas, Humayun Nagar, Mehdipatnam, Hyderabad-500008',
+    address: '1-8-215/16, Jainam Towers, 3rd Floor, Lal Bahadur Colony, P.G. Road, Secunderabad, Hyderabad-500003',
     contactLabel: 'Monica Sharma',
     contact: '+91-7838683199',
     email: 'monica@indologindia.com',
   },
   {
     city: 'BANGALORE',
-    address: '#935/786, M.R. Mansion, B.B. Road, Kempe Gowda Circle, Yelahanka, Bangalore-560064',
+    address: '#B02, ECONEST, 9th Main, 11th Cross, Near HMR International School, Hennur, Bangalore-560043',
     contactLabel: 'Neha',
     contact: '+91-8285436575',
     email: 'seaexpo@indologindia.com',
   },
+  {
+    city: 'COIMBATORE',
+    address: 'No 2/7, Vivekananda Nagar, 4th Street, Coimbatore-641015',
+    contactLabel: 'V. Ramesh',
+    contact: '+91-99652 44222',
+    email: 'chennai@indologindia.com',
+  },
 ];
 
 const accreditations = [
-  'IATA', 'FIATA', 'AMTOI', 'MTO', '5Star Network', 'WTC Alliance', 'WWPC World', 'AerOcea Network'
+  'IATA', 'FIATA', 'FFI', 'ACCAI', 'AMTOI', 'MTO', '5STAR', 'AON', 'WTC Alliance', 'IFN', 'YNP', 'WFC', 'AerOceaNetwork'
 ];
 
 export default function OfficesSec() {

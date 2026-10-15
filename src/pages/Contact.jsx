@@ -1,7 +1,43 @@
-import { FaMapPin, FaPhone, FaEnvelope, FaLink, FaWhatsapp } from 'react-icons/fa';
+import { useState, useRef } from 'react';
+import { FaMapPin, FaPhone, FaEnvelope, FaLink, FaWhatsapp, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
+import emailjs from '@emailjs/browser';
 import InnerPageHero from '../components/InnerPageHero';
 
+// ─── EmailJS Configuration ────────────────────────────────────────────────────
+// 1. Create a free account at https://www.emailjs.com
+// 2. Add your Email Service (Gmail / Outlook / SMTP) → copy SERVICE_ID
+// 3. Create an Email Template with variables: {{from_name}}, {{from_email}},
+//    {{phone}}, {{company}}, {{service}}, {{origin}}, {{destination}},
+//    {{industry}}, {{message}} → copy TEMPLATE_ID
+// 4. Get your PUBLIC KEY from Account → API Keys
+// 5. Set recipient email in the template to: cs@indologindia.com
+const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← replace
+const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace
+const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';    // ← replace
+// ─────────────────────────────────────────────────────────────────────────────
+
 export default function Contact() {
+  const formRef = useRef(null);
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('sending');
+    try {
+      await emailjs.sendForm(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
+      setStatus('success');
+      formRef.current.reset();
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setStatus('error');
+    }
+  };
+
   return (
     <>
       <InnerPageHero 
@@ -25,7 +61,6 @@ export default function Contact() {
               <p className="text-[15px] text-text-soft font-light leading-[1.85]">
                 Our team responds within 4 business hours. Available 24/7 for urgent shipments.
               </p>
-              {/* Response promise badge */}
               <div className="mt-4 inline-flex items-center gap-2.5 bg-gold/10 border border-gold/30 px-4 py-2.5 rounded-sm">
                 <span className="w-2 h-2 bg-gold rounded-full animate-pulse shrink-0" />
                 <span className="text-[12px] font-semibold text-navy tracking-wide">We reply within 4 business hours</span>
@@ -51,6 +86,7 @@ export default function Contact() {
                 <div className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold mb-1">PHONE</div>
                 <div className="text-[14px] text-text leading-[1.6] flex flex-col gap-1">
                   <a href="tel:+919266896322" className="text-navy font-medium hover:underline">+91-9266896322</a>
+                  <a href="tel:+911145028662" className="text-navy font-medium hover:underline">+91 11-45028662 (Landline)</a>
                 </div>
               </div>
             </div>
@@ -62,12 +98,11 @@ export default function Contact() {
               <div>
                 <div className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold mb-1">EMAIL</div>
                 <div className="text-[14px] text-text leading-[1.6]">
-                  <a href="mailto:vishal@indologindia.com" className="text-navy font-medium hover:underline">vishal@indologindia.com</a>
+                  <a href="mailto:cs@indologindia.com" className="text-navy font-medium hover:underline">cs@indologindia.com</a>
                 </div>
               </div>
             </div>
 
-            {/* WhatsApp */}
             <div className="flex gap-4">
               <div className="w-11 h-11 bg-[#25d366] shrink-0 flex items-center justify-center text-white mt-0.5">
                 <FaWhatsapp />
@@ -98,30 +133,53 @@ export default function Contact() {
 
           <div className="bg-white p-10 border border-border mt-3 lg:mt-0">
             <h3 className="font-lora text-[1.3rem] text-navy mb-7 font-medium">Quick Enquiry</h3>
-            <form className="flex flex-col gap-4">
+
+            {/* Success state */}
+            {status === 'success' && (
+              <div className="flex items-center gap-3 bg-green-50 border border-green-200 px-5 py-4 mb-6 rounded-sm">
+                <FaCheckCircle className="text-green-600 text-xl shrink-0" />
+                <div>
+                  <div className="font-semibold text-green-800 text-[14px]">Enquiry sent successfully!</div>
+                  <div className="text-[12px] text-green-700 font-light mt-0.5">We'll get back to you within 4 business hours.</div>
+                </div>
+              </div>
+            )}
+
+            {/* Error state */}
+            {status === 'error' && (
+              <div className="flex items-center gap-3 bg-red-50 border border-red-200 px-5 py-4 mb-6 rounded-sm">
+                <FaExclamationTriangle className="text-red-600 text-xl shrink-0" />
+                <div>
+                  <div className="font-semibold text-red-800 text-[14px]">Something went wrong</div>
+                  <div className="text-[12px] text-red-700 font-light mt-0.5">Please email us directly at cs@indologindia.com</div>
+                </div>
+              </div>
+            )}
+
+            <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Your Name *</label>
-                  <input type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" required />
+                  <input name="from_name" type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" required />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Company Name</label>
-                  <input type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
+                  <input name="company" type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Email Address *</label>
-                  <input type="email" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" required />
+                  <input name="from_email" type="email" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" required />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Phone Number</label>
-                  <input type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
+                  <input name="phone" type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
                 </div>
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Service Required</label>
-                <select className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full appearance-none transition-colors border-r-8">
+                <select name="service" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full appearance-none transition-colors border-r-8">
                   <option>Ocean Freight — Export</option>
                   <option>Ocean Freight — Import</option>
                   <option>Air Freight — Export</option>
@@ -136,16 +194,16 @@ export default function Contact() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Origin City/Port</label>
-                  <input type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
+                  <input name="origin" type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Destination City/Port</label>
-                  <input type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
+                  <input name="destination" type="text" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full transition-colors" />
                 </div>
               </div>
               <div className="flex flex-col gap-1.5">
                 <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Industry</label>
-                <select className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full appearance-none transition-colors">
+                <select name="industry" className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full appearance-none transition-colors">
                   <option>RMG / Fashion and Garments</option>
                   <option>Electronics</option>
                   <option>Pharmaceuticals</option>
@@ -157,17 +215,24 @@ export default function Contact() {
               </div>
               <div className="flex flex-col gap-1.5 mt-2">
                 <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Cargo Details</label>
-                <textarea rows="3" placeholder="Weight, dimensions, commodity type, special requirements..." className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full resize-none transition-colors"></textarea>
+                <textarea name="message" rows="3" placeholder="Weight, dimensions, commodity type, special requirements..." className="bg-[#f9f9f9] border-[1.5px] border-border text-[13px] px-3.5 py-3 outline-none focus:border-navy focus:bg-white w-full resize-none transition-colors"></textarea>
               </div>
-              <button type="button" className="w-full p-4 bg-navy text-white font-bold text-[12px] tracking-[0.1em] uppercase mt-2 hover:bg-navy-dark hover:-translate-y-px transition-all">
-                Send Enquiry &rarr;
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="w-full p-4 bg-navy text-white font-bold text-[12px] tracking-[0.1em] uppercase mt-2 hover:bg-navy-dark hover:-translate-y-px transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                {status === 'sending' ? 'Sending…' : 'Send Enquiry →'}
               </button>
+              <p className="text-[11px] text-text-muted text-center font-light">
+                Submissions go to <strong>cs@indologindia.com</strong>
+              </p>
             </form>
           </div>
 
         </div>
-      </section>
-    </div>
-  </>
+        </section>
+      </div>
+    </>
   );
 }

@@ -67,7 +67,7 @@ export default function QcPlatform() {
           <div className="mt-8 pt-8 border-t border-border">
             <div className="text-[10px] tracking-[0.18em] uppercase text-text-muted mb-3">Trusted by global fashion brands</div>
             <div className="flex flex-wrap gap-2">
-              {['TWINSET Milano', 'MarcCain', 'Patrizia Pepe', 'PINKO'].map(brand => (
+              {['TWINSET Milano', 'Patrizia Pepe'].map(brand => (
                 <span key={brand} className="font-lora text-[13px] px-[18px] py-2 border border-border text-text-soft transition-colors hover:border-gold hover:text-gold cursor-default bg-white">
                   {brand}
                 </span>

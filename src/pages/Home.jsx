@@ -7,6 +7,8 @@ import OfficesSec from '../components/home/OfficesSec';
 import CtaBand from '../components/home/CtaBand';
 import ProcessFlow from '../components/home/ProcessFlow';
 import StoryTeaser from '../components/home/StoryTeaser';
+import RoadCorridors from '../components/home/RoadCorridors';
+import ClientsBrands from '../components/home/ClientsBrands';
 
 export default function Home() {
   return (
@@ -16,6 +18,8 @@ export default function Home() {
       <HomeTeasers />
       <ProcessFlow />
       <QcPlatform />
+      <RoadCorridors />
+      <ClientsBrands />
       <StoryTeaser />
       <OfficesSec />
       <WhyUs />

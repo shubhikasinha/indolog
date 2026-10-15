@@ -84,6 +84,10 @@ export default function About() {
                 <h4 className="font-bold text-navy mb-2 tracking-[0.05em] text-[15px]">5. Collaboration</h4>
                 <p className="text-[13px] text-text-mid font-light leading-[1.6]">We believe in teamwork and shared success, working closely with clients, partners and our team to achieve outstanding results.</p>
               </div>
+              <div className="bg-white p-8 hover:bg-slate transition-colors">
+                <h4 className="font-bold text-navy mb-2 tracking-[0.05em] text-[15px]">6. Integrity</h4>
+                <p className="text-[13px] text-text-mid font-light leading-[1.6]">We conduct every shipment and transaction with honesty and transparency, ensuring you always know exactly where your cargo — and your business relationship with us — stands.</p>
+              </div>
             </div>
           </div>
 
