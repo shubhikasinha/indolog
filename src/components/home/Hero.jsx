@@ -219,13 +219,13 @@ export default function Hero() {
             )}
           </AnimatePresence>
 
-          <div className="inline-flex items-center gap-2.5 text-[12px] tracking-[0.28em] uppercase text-gold mb-6 font-bold">
+          <div className="inline-flex items-center gap-2.5 text-[12px] tracking-[0.28em] uppercase text-gold mb-8 font-bold">
             <span className="w-10 h-[1px] bg-gold block" />
             India's Premier Freight Partner
           </div>
 
           {/* Headline — personalized subtitle when industry detected */}
-          <h1 className="font-lora text-[clamp(2.2rem,4.5vw,4rem)] leading-[1.1] tracking-[-0.025em] mb-7 drop-shadow-lg">
+          <h1 className="font-lora text-[clamp(2.2rem,4.5vw,4rem)] leading-[1.18] tracking-[-0.025em] mb-9 drop-shadow-lg">
             {personalized && industry ? (
               <>
                 Precision{' '}
@@ -238,13 +238,13 @@ export default function Hero() {
             ) : (
               <>
                 Door-to-door freight<br />
-                <em className="text-gold-light italic tracking-tight">+ independent QC</em><br />
-                <span className="text-white/85 text-[0.70em]">One partner. One contract. Zero surprises.</span>
+                <em className="block mt-2 text-gold-light italic tracking-tight">+ independent QC</em>
+                <span className="block mt-6 text-white/85 text-[0.70em] leading-relaxed tracking-[0.01em]">One partner. One contract. Zero surprises.</span>
               </>
             )}
           </h1>
 
-          <p className="text-[14px] text-white/65 leading-[1.9] mb-8 font-light max-w-[420px]">
+          <p className="text-[14px] text-white/65 leading-[2] mb-9 font-light max-w-[440px]">
             {personalized && industry
               ? industries.find(i => i.id === industry)?.desc
               : 'Freight forwarding + independent QC inspection — one trusted partner for India and 50+ countries. The only logistics company with its own 12,000 sq ft QC facility.'

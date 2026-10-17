@@ -3,25 +3,24 @@ import { FaMapPin, FaPhone, FaEnvelope, FaLink, FaWhatsapp, FaCheckCircle, FaExc
 import emailjs from '@emailjs/browser';
 import InnerPageHero from '../components/InnerPageHero';
 
-// ─── EmailJS Configuration ────────────────────────────────────────────────────
-// 1. Create a free account at https://www.emailjs.com
-// 2. Add your Email Service (Gmail / Outlook / SMTP) → copy SERVICE_ID
-// 3. Create an Email Template with variables: {{from_name}}, {{from_email}},
-//    {{phone}}, {{company}}, {{service}}, {{origin}}, {{destination}},
-//    {{industry}}, {{message}} → copy TEMPLATE_ID
-// 4. Get your PUBLIC KEY from Account → API Keys
-// 5. Set recipient email in the template to: cs@indologindia.com
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← replace
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← replace
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';    // ← replace
-// ─────────────────────────────────────────────────────────────────────────────
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const formRef = useRef(null);
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+      setErrorMessage('Email delivery is not configured yet. Please email us directly at nikhil@indologindia.com.');
+      setStatus('error');
+      return;
+    }
+
+    setErrorMessage('We couldn’t send your email. Please try again or email nikhil@indologindia.com.');
     setStatus('sending');
     try {
       await emailjs.sendForm(
@@ -32,8 +31,8 @@ export default function Contact() {
       );
       setStatus('success');
       formRef.current.reset();
-    } catch (err) {
-      console.error('EmailJS error:', err);
+    } catch (error) {
+      console.error('Contact form email failed:', error);
       setStatus('error');
     }
   };
@@ -98,7 +97,7 @@ export default function Contact() {
               <div>
                 <div className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold mb-1">EMAIL</div>
                 <div className="text-[14px] text-text leading-[1.6]">
-                  <a href="mailto:cs@indologindia.com" className="text-navy font-medium hover:underline">cs@indologindia.com</a>
+                  <a href="mailto:nikhil@indologindia.com" className="text-navy font-medium hover:underline">nikhil@indologindia.com</a>
                 </div>
               </div>
             </div>
@@ -139,8 +138,7 @@ export default function Contact() {
               <div className="flex items-center gap-3 bg-green-50 border border-green-200 px-5 py-4 mb-6 rounded-sm">
                 <FaCheckCircle className="text-green-600 text-xl shrink-0" />
                 <div>
-                  <div className="font-semibold text-green-800 text-[14px]">Enquiry sent successfully!</div>
-                  <div className="text-[12px] text-green-700 font-light mt-0.5">We'll get back to you within 4 business hours.</div>
+                  <div className="font-semibold text-green-800 text-[14px]">Your email has been sent.</div>
                 </div>
               </div>
             )}
@@ -150,13 +148,14 @@ export default function Contact() {
               <div className="flex items-center gap-3 bg-red-50 border border-red-200 px-5 py-4 mb-6 rounded-sm">
                 <FaExclamationTriangle className="text-red-600 text-xl shrink-0" />
                 <div>
-                  <div className="font-semibold text-red-800 text-[14px]">Something went wrong</div>
-                  <div className="text-[12px] text-red-700 font-light mt-0.5">Please email us directly at cs@indologindia.com</div>
+                  <div className="font-semibold text-red-800 text-[14px]">We couldn’t send your email.</div>
+                  <div className="text-[12px] text-red-700 font-light mt-0.5">{errorMessage.includes('nikhil@') ? <>{errorMessage.split('nikhil@')[0]}<a href="mailto:nikhil@indologindia.com" className="underline">nikhil@indologindia.com</a>.</> : errorMessage}</div>
                 </div>
               </div>
             )}
 
             <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <input type="hidden" name="to_email" value="nikhil@indologindia.com" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Your Name *</label>
@@ -225,7 +224,7 @@ export default function Contact() {
                 {status === 'sending' ? 'Sending…' : 'Send Enquiry →'}
               </button>
               <p className="text-[11px] text-text-muted text-center font-light">
-                Submissions go to <strong>cs@indologindia.com</strong>
+                Enquiries are sent to <strong>nikhil@indologindia.com</strong>
               </p>
             </form>
           </div>

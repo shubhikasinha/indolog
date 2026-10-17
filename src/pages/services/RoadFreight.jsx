@@ -1,6 +1,7 @@
 import InnerPageHero from '../../components/InnerPageHero';
 import { Link } from 'react-router-dom';
 import { FaTruck, FaRoute, FaFileAlt, FaWarehouse, FaMapMarkerAlt } from 'react-icons/fa';
+import RoadCorridors from '../../components/home/RoadCorridors';
 
 const features = [
   { icon: <FaTruck />, title: 'FTL & LTL', desc: 'Full truckload and part-load groupage across India — PAN-India coverage from 7 branch offices.' },
@@ -62,6 +63,7 @@ export default function RoadFreight() {
               ))}
             </div>
           </div>
+          <RoadCorridors />
           <div className="bg-navy text-white p-10 max-w-[500px]">
             <h3 className="font-lora text-[1.4rem] mb-5">Get a Road Freight Quote</h3>
             <p className="text-[13px] text-white/60 mb-6 font-light">Share your pickup location, destination port, and cargo size — we'll quote within 4 hours.</p>

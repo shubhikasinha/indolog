@@ -27,7 +27,7 @@ const offices = [
     address: '510-511, Fifth Floor, ECHELON, B/S Satyadeep Heights, Nr. Orchid Whitefield, Makarba, Ahmedabad-380051',
     contactLabel: 'Vijaya',
     contact: '+91-88252 17745',
-    email: 'ahmedabad@indologindia.com',
+    email: 'vijaya@indologindia.com',
   },
   {
     city: 'HYDERABAD',
@@ -48,12 +48,8 @@ const offices = [
     address: 'No 2/7, Vivekananda Nagar, 4th Street, Coimbatore-641015',
     contactLabel: 'V. Ramesh',
     contact: '+91-99652 44222',
-    email: 'chennai@indologindia.com',
+    email: 'cs2@indologindia.com',
   },
-];
-
-const accreditations = [
-  'IATA', 'FIATA', 'FFI', 'ACCAI', 'AMTOI', 'MTO', '5STAR', 'AON', 'WTC Alliance', 'IFN', 'YNP', 'WFC', 'AerOceaNetwork'
 ];
 
 export default function OfficesSec() {
@@ -83,7 +79,9 @@ export default function OfficesSec() {
               Plot no. 249/1, Sector-24, Phase-2, Dhulsiras, Dwarka, New Delhi-110077
             </p>
             <div className="text-[12px] text-white/70 font-medium">
-              Mr. Vishal Singh (Director) &middot; +91-9266896322 &middot; vishal@indologindia.com
+              <span>Mr. Vishal Singh (Director)</span>
+              <a href="tel:+919266896322" className="hover:text-white">+91-9266896322</a>
+              <a href="mailto:vishal@indologindia.com" className="text-gold/70 hover:text-gold">vishal@indologindia.com</a>
             </div>
           </div>
 
@@ -102,7 +100,7 @@ export default function OfficesSec() {
           ))}
 
           {/* Global Reach Card */}
-          <div className="bg-white/5 p-7 flex flex-col items-center justify-center text-center transition-colors hover:bg-white/10 group">
+          <div className="bg-white/5 p-7 flex flex-col items-center justify-center text-center transition-colors hover:bg-white/10 group lg:col-span-4">
             <FaGlobeAsia className="text-4xl text-white/40 mb-3 group-hover:text-white/60 transition-colors" />
             <div className="text-[15px] font-medium text-white/60 mb-1">50+ countries</div>
             <div className="text-[12px] text-white/40 font-light">Global agent network</div>
@@ -111,14 +109,48 @@ export default function OfficesSec() {
         </div>
 
         {/* Accreditations */}
-        <div className="flex flex-wrap gap-[1.5px] bg-white/10 mt-12 border-b border-t border-white/10 border-r border-l border-white/0">
-          {accreditations.map(acc => (
-            <div key={acc} className="bg-white/5 px-8 py-4 text-[13px] font-bold tracking-[0.1em] text-white/40 hover:bg-white/10 hover:text-gold transition-colors cursor-default grow text-center">
-              {acc}
+        <div className="mt-12">
+          <div className="text-[10px] tracking-[0.18em] uppercase text-white/30 font-semibold mb-4">Memberships &amp; Alliances</div>
+          <div className="flex flex-wrap gap-[1.5px] bg-white/10 border-b border-t border-white/10">
+            {[
+              { name: 'IATA', domain: 'iata.org' },
+              { name: 'FIATA', domain: 'fiata.org' },
+              { name: 'FFI', domain: 'ffionline.org' },
+              { name: 'ACCAI', domain: 'accai.org' },
+              { name: 'AMTOI', domain: 'amtoi.org' },
+              { name: 'MTO', domain: 'dgshipping.gov.in' },
+              { name: '5STAR', domain: '5starnetwork.com' },
+              { name: 'AON', domain: null },
+              { name: 'WTC Alliance', domain: 'wtca.org' },
+              { name: 'IFN', domain: 'ifn.network' },
+              { name: 'YNP', domain: null },
+              { name: 'WFC', domain: 'worldfreightgroup.com' },
+              { name: 'AerOceaNetwork', domain: 'aeroceanetwork.net' },
+            ].map((acc) => (
+              <div key={acc.name} className="bg-white/5 px-5 py-4 flex flex-col items-center justify-center gap-2 grow text-center min-w-[110px]">
+                {acc.domain ? (
+                  <img
+                    src={`https://www.google.com/s2/favicons?domain=${acc.domain}&sz=128`}
+                    alt={acc.name}
+                    className="h-8 w-8 object-contain"
+                    onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'flex'; }}
+                  />
+                ) : null}
+                <span className="hidden h-8 w-8 items-center justify-center border border-white/20 text-white/70 text-[10px] font-bold" style={{ display: acc.domain ? 'none' : 'flex' }} aria-hidden="true">
+                  {acc.name.split(/\s+/).map((part) => part[0]).join('').slice(0, 3)}
+                </span>
+                <span className="text-[11px] font-bold tracking-[0.06em] text-white/65">{acc.name}</span>
+              </div>
+            ))}
+            <div className="bg-[#d4a8431f] border-t-2 border-gold px-6 py-4 flex flex-col items-center justify-center gap-2 grow text-center">
+              <img
+                src="https://www.google.com/s2/favicons?domain=jctrans.com&sz=128"
+                alt="JCTrans"
+                className="h-8 w-8 object-contain"
+                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+              />
+              <span className="text-[11px] font-bold tracking-[0.06em] text-gold">JCTrans — Authorised Channel Partner</span>
             </div>
-          ))}
-          <div className="bg-[#d4a8431f] border-t-2 border-gold px-8 py-4 text-[13px] font-bold tracking-[0.1em] text-gold grow text-center">
-            JCTrans — Authorised Channel Partner
           </div>
         </div>
 

@@ -9,8 +9,8 @@ const corridors = [
     via: 'NH-19 · ~1,480 km',
     desc: 'Our primary east-west highway corridor — connecting ICD Kolkata/KICT port to Delhi NCR distribution hubs and Dwarka HQ.',
     transit: '36–48 hrs',
-    fromX: 72, fromY: 52,
-    toX: 42, toY: 34,
+    fromX: 65, fromY: 45,
+    toX: 36, toY: 25,
   },
   {
     id: 'kol-jnpt',
@@ -19,8 +19,8 @@ const corridors = [
     via: 'NH-16 / NH-44 · ~2,100 km',
     desc: 'Long-haul FTL/LTL from Kolkata port and ICD to JNPT (Nhava Sheva) for FCL ocean consolidation.',
     transit: '48–60 hrs',
-    fromX: 72, fromY: 52,
-    toX: 26, toY: 60,
+    fromX: 65, fromY: 45,
+    toX: 25, toY: 56,
   },
   {
     id: 'jnpt-vdra',
@@ -29,8 +29,8 @@ const corridors = [
     via: 'NH-48 · ~450 km',
     desc: 'Fast industrial corridor from JNPT for automotive and pharma clients in the Vadodara–Anand belt.',
     transit: '8–12 hrs',
-    fromX: 26, fromY: 60,
-    toX: 28, toY: 47,
+    fromX: 25, fromY: 56,
+    toX: 26, toY: 45,
   },
   {
     id: 'delhi-chennai',
@@ -39,21 +39,21 @@ const corridors = [
     via: 'NH-44 · ~2,200 km',
     desc: 'North–South backbone corridor serving pan-India distribution from Delhi NCR down to Chennai port.',
     transit: '48–60 hrs',
-    fromX: 42, fromY: 34,
-    toX: 52, toY: 80,
+    fromX: 36, fromY: 25,
+    toX: 44, toY: 77,
   },
 ];
 
 // Simple SVG India outline — major city dots only (approximate screen coords)
 const cities = [
-  { name: 'New Delhi',  x: 42, y: 34 },
-  { name: 'Kolkata',   x: 72, y: 52 },
-  { name: 'JNPT',      x: 26, y: 60 },
-  { name: 'Vadodara',  x: 28, y: 47 },
-  { name: 'Chennai',   x: 52, y: 80 },
-  { name: 'Bangalore', x: 47, y: 85 },
-  { name: 'Hyderabad', x: 48, y: 70 },
-  { name: 'Ahmedabad', x: 28, y: 42 },
+  { name: 'New Delhi',  x: 36, y: 25 },
+  { name: 'Kolkata',   x: 65, y: 45 },
+  { name: 'JNPT',      x: 25, y: 56 },
+  { name: 'Vadodara',  x: 26, y: 45 },
+  { name: 'Chennai',   x: 44, y: 77 },
+  { name: 'Bangalore', x: 37, y: 78 },
+  { name: 'Hyderabad', x: 39, y: 62 },
+  { name: 'Ahmedabad', x: 24, y: 43 },
 ];
 
 export default function RoadCorridors() {
@@ -134,12 +134,12 @@ export default function RoadCorridors() {
                 className="w-full"
                 style={{ maxHeight: 460 }}
               >
-                {/* India outline — simplified polygon */}
-                <polygon
-                  points="28,8 35,6 45,7 52,8 62,10 70,16 78,22 80,32 76,42 74,50 76,56 74,62 70,68 66,76 60,82 56,88 52,94 50,100 48,94 44,88 40,82 36,76 30,70 26,62 22,58 18,54 16,48 18,40 20,32 22,22 24,15 26,10"
-                  fill="#eef1f7"
-                  stroke="#c8d0e0"
-                  strokeWidth="0.8"
+                {/* Wikimedia Commons blank India map (CC BY-SA 3.0). */}
+                <image
+                  href="https://upload.wikimedia.org/wikipedia/commons/a/ab/India_map_blank.svg"
+                  x="12" y="0" width="76" height="105"
+                  preserveAspectRatio="xMidYMid meet"
+                  opacity="0.95"
                 />
 
                 {/* Route lines */}
@@ -192,6 +192,14 @@ export default function RoadCorridors() {
                   </g>
                 ))}
               </svg>
+              <a
+                href="https://commons.wikimedia.org/wiki/File:India_map_blank.svg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-2 text-[10px] text-text-muted"
+              >
+                Map: PlaneMad / Wikimedia Commons · CC BY-SA 3.0
+              </a>
 
               {/* Legend */}
               <div className="mt-4 pt-4 border-t border-border flex flex-wrap gap-4 text-[11px]">

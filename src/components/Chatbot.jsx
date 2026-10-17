@@ -18,7 +18,7 @@ const BOT_RESPONSES = {
   track: `To track your shipment, please share your **AWB or B/L number** via WhatsApp at **+91-9266896322** or use the **[Track Shipment](https://track.fresatechnologies.com/ords/r/fresaportal1/fresaonlinetracking/tracking5060?p5060_tracking_key=282812857869380186081738286578788375454)** portal. We'll reply within 1 hour.`,
   qc: `Indolog operates a **12,000 sq ft QC facility** in New Delhi — India's most advanced pre-shipment inspection platform with zero factory influence. Learn more on our **[QC Platform page](/qc-platform)**.`,
   office: `We have offices in:\n• **New Delhi** (HQ) — +91-9266896322\n• Mumbai · Chennai · Kolkata · Hyderabad · Bangalore · Ahmedabad · Coimbatore\n\nSee all offices on our **[Offices page](/offices)**.`,
-  fallback: `I'm not sure about that specifically — let me connect you to the team! Please reach us at **cs@indologindia.com** or WhatsApp **+91-9266896322** and we'll sort it out quickly.`,
+  fallback: `I'm not sure about that specifically — let me connect you to the team! Please reach us at **nikhil@indologindia.com** or WhatsApp **+91-9266896322** and we'll sort it out quickly.`,
 };
 
 function getResponse(msg) {
@@ -102,19 +102,6 @@ export default function Chatbot() {
     <>
       {/* Floating button */}
       <div className="fixed bottom-6 left-6 z-[900] flex flex-col items-start gap-2">
-        <AnimatePresence>
-          {!open && (
-            <motion.div
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 8 }}
-              className="bg-white border border-border text-navy text-[12px] font-medium px-4 py-2 shadow-lg rounded-sm max-w-[200px] leading-[1.4]"
-            >
-              👋 Hi! Ask <strong>Arya</strong> anything about freight
-            </motion.div>
-          )}
-        </AnimatePresence>
-
         <button
           onClick={() => setOpen((o) => !o)}
           aria-label="Open Arya chatbot"

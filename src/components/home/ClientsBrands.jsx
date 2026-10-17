@@ -1,4 +1,3 @@
-// Brand list with Clearbit logo fallbacks (text if logo fails)
 const brands = [
   { name: 'SMCP', domain: 'smcp.com' },
   { name: 'Sandro', domain: 'sandro-paris.com' },
@@ -6,60 +5,57 @@ const brands = [
   { name: 'Isabel Marant', domain: 'isabelmarant.com' },
   { name: 'Paco Rabanne', domain: 'pacorabanne.com' },
   { name: 'Twin Set', domain: 'twinset.com' },
-  { name: 'Tessilform', domain: 'tessilform.it' },
   { name: 'Hitachi', domain: 'hitachi.com' },
   { name: 'Tata', domain: 'tata.com' },
-  { name: 'Dana USA', domain: 'dana.com' },
+  { name: 'Dana', domain: 'dana.com' },
   { name: 'Versace', domain: 'versace.com' },
   { name: 'Sun Pharma', domain: 'sunpharma.com' },
   { name: 'Liu Jo', domain: 'liujo.com' },
   { name: 'Hugo Boss', domain: 'hugoboss.com' },
   { name: 'Bugatti', domain: 'bugatti.com' },
-  { name: 'TJ Maxx', domain: 'tjmaxx.com' },
+  { name: 'TJ Maxx', domain: 'tjmaxx.tjx.com' },
   { name: 'MRF Tyres', domain: 'mrftyres.com' },
-  { name: 'Sir Safety', domain: 'sirsafety.it' },
-  { name: 'Pittarello', domain: 'pittarello.it' },
   { name: 'JK Papers', domain: 'jkpaper.com' },
   { name: 'Taj Hotels', domain: 'tajhotels.com' },
   { name: 'JW Marriott', domain: 'marriott.com' },
   { name: 'Pan Parag', domain: 'panparag.com' },
   { name: 'Porsche', domain: 'porsche.com' },
-  { name: 'Ara Shoes', domain: 'ara.de' },
-  { name: 'Electa EV', domain: null },
-  { name: 'Moke International', domain: 'moke.com' },
-  { name: 'Fonz N Leather', domain: null },
-  { name: 'Moxy Wear (USA)', domain: null },
-  { name: 'Sajaco Nordic', domain: null },
-  { name: 'Kaili Group', domain: null },
-  { name: 'Landmark', domain: 'landmarkgroup.com' },
+  { name: 'Ara Shoes', domain: 'ara-shoes.com' },
+  { name: 'Moke Intl', domain: 'mokeinternational.com' },
   { name: 'BA & SH', domain: 'ba-sh.com' },
+  { name: 'Landmark', domain: 'landmarkgroup.com' },
+  { name: 'Pittarello', domain: 'pittarello.com' },
+  { name: 'Sir Safety', domain: 'sirsafety.com' },
+  { name: 'Sajaco Nordic', domain: 'sajaco.dk' },
+  { name: 'Electa EV', domain: 'one-moto.com' },
+  { name: 'Fonz N Leather', domain: 'fonzleatherstyles.com' },
+  { name: 'Moxy Wear (USA)', domain: 'moxy-wear.creator-spring.com' },
+  { name: 'Kaili Group', domain: 'store.kailigroup.it' },
+  { name: 'Tessilform', domain: 'patriziapepe.com' },
   { name: 'Lola Spain', domain: null },
   { name: 'Envisage', domain: null },
-  { name: 'ClassPromotion', domain: null },
+  { name: 'ClassPromotion', domain: 'classpromotion.com' },
 ];
 
-function BrandLogo({ brand }) {
+function BrandCard({ brand }) {
   const logoUrl = brand.domain
-    ? `https://logo.clearbit.com/${brand.domain}`
+    ? `https://www.google.com/s2/favicons?domain=${brand.domain}&sz=128`
     : null;
 
   return (
-    <div className="bg-white border border-border flex flex-col items-center justify-center gap-2 p-4 h-20 hover:border-gold hover:shadow-sm transition-all duration-200 group cursor-default">
+    <div className="bg-white border border-border flex flex-col items-center justify-center gap-2 p-4 h-28 cursor-default">
       {logoUrl ? (
         <img
           src={logoUrl}
           alt={brand.name}
-          className="max-h-8 max-w-[100px] object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300 opacity-60 group-hover:opacity-100"
-          onError={(e) => {
-            e.target.style.display = 'none';
-            e.target.nextSibling.style.display = 'block';
-          }}
+          className="h-10 w-10 object-contain"
+          onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'flex'; }}
         />
       ) : null}
-      <span
-        className="text-[11px] font-bold tracking-[0.06em] text-text-muted group-hover:text-navy transition-colors text-center leading-tight"
-        style={{ display: logoUrl ? 'none' : 'block' }}
-      >
+      <span className="hidden h-10 w-10 items-center justify-center border border-border text-navy font-bold text-xs" style={{ display: logoUrl ? 'none' : 'flex' }} aria-hidden="true">
+        {brand.name.split(/\s+/).map((part) => part[0]).join('').slice(0, 3)}
+      </span>
+      <span className="text-[9px] font-bold tracking-[0.08em] text-text-muted text-center leading-tight uppercase">
         {brand.name}
       </span>
     </div>
@@ -88,9 +84,9 @@ export default function ClientsBrands() {
         </div>
 
         {/* Logo grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-[1px] bg-border">
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-[1px] bg-border">
           {brands.map((brand) => (
-            <BrandLogo key={brand.name} brand={brand} />
+            <BrandCard key={brand.name} brand={brand} />
           ))}
         </div>
 
