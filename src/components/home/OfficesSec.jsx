@@ -115,40 +115,39 @@ export default function OfficesSec() {
             {[
               { name: 'IATA', domain: 'iata.org' },
               { name: 'FIATA', domain: 'fiata.org' },
-              { name: 'FFI', domain: 'ffionline.org' },
-              { name: 'ACCAI', domain: 'accai.org' },
+              { name: 'FFI', domain: 'ffi.com.pk' },
+              { name: 'ACCAI', domain: 'acaai.in' },
               { name: 'AMTOI', domain: 'amtoi.org' },
               { name: 'MTO', domain: 'dgshipping.gov.in' },
               { name: '5STAR', domain: '5starnetwork.com' },
-              { name: 'AON', domain: null },
+              { name: 'AON', domain: 'aon.com' },
               { name: 'WTC Alliance', domain: 'wtca.org' },
-              { name: 'IFN', domain: 'ifn.network' },
-              { name: 'YNP', domain: null },
+              { name: 'IFN', domain: 'ifnfamily.com' },
+              { name: 'YNP', domain: 'ynp.com' },
               { name: 'WFC', domain: 'worldfreightgroup.com' },
               { name: 'AerOceaNetwork', domain: 'aeroceanetwork.net' },
             ].map((acc) => (
               <div key={acc.name} className="bg-white/5 px-5 py-4 flex flex-col items-center justify-center gap-2 grow text-center min-w-[110px]">
                 {acc.domain ? (
                   <img
-                    src={`https://www.google.com/s2/favicons?domain=${acc.domain}&sz=128`}
+                    src={`https://cdn.brandfetch.io/${acc.domain}/w/400/h/100`}
                     alt={acc.name}
                     className="h-8 w-8 object-contain"
-                    onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'flex'; }}
+                    onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'block'; }}
                   />
                 ) : null}
-                <span className="hidden h-8 w-8 items-center justify-center border border-white/20 text-white/70 text-[10px] font-bold" style={{ display: acc.domain ? 'none' : 'flex' }} aria-hidden="true">
-                  {acc.name.split(/\s+/).map((part) => part[0]).join('').slice(0, 3)}
-                </span>
+                <span className="hidden text-[10px] text-white/50" style={{ display: acc.domain ? 'none' : 'block' }}>{acc.domain || acc.name}</span>
                 <span className="text-[11px] font-bold tracking-[0.06em] text-white/65">{acc.name}</span>
               </div>
             ))}
             <div className="bg-[#d4a8431f] border-t-2 border-gold px-6 py-4 flex flex-col items-center justify-center gap-2 grow text-center">
               <img
-                src="https://www.google.com/s2/favicons?domain=jctrans.com&sz=128"
+                src="https://cdn.brandfetch.io/jctrans.com/w/400/h/100"
                 alt="JCTrans"
                 className="h-8 w-8 object-contain"
-                onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'block'; }}
               />
+              <span className="hidden text-[10px] text-white/50">jctrans.com</span>
               <span className="text-[11px] font-bold tracking-[0.06em] text-gold">JCTrans — Authorised Channel Partner</span>
             </div>
           </div>

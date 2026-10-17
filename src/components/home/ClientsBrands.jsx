@@ -32,14 +32,14 @@ const brands = [
   { name: 'Moxy Wear (USA)', domain: 'moxy-wear.creator-spring.com' },
   { name: 'Kaili Group', domain: 'store.kailigroup.it' },
   { name: 'Tessilform', domain: 'patriziapepe.com' },
-  { name: 'Lola Spain', domain: null },
-  { name: 'Envisage', domain: null },
+  { name: 'Lola Spain', domain: 'lola.com.es' },
+  { name: 'Envisage', domain: 'envisage.com' },
   { name: 'ClassPromotion', domain: 'classpromotion.com' },
 ];
 
 function BrandCard({ brand }) {
   const logoUrl = brand.domain
-    ? `https://www.google.com/s2/favicons?domain=${brand.domain}&sz=128`
+    ? `https://cdn.brandfetch.io/${brand.domain}/w/400/h/140`
     : null;
 
   return (
@@ -49,11 +49,11 @@ function BrandCard({ brand }) {
           src={logoUrl}
           alt={brand.name}
           className="h-10 w-10 object-contain"
-          onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'flex'; }}
+          onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.nextElementSibling.style.display = 'block'; }}
         />
       ) : null}
-      <span className="hidden h-10 w-10 items-center justify-center border border-border text-navy font-bold text-xs" style={{ display: logoUrl ? 'none' : 'flex' }} aria-hidden="true">
-        {brand.name.split(/\s+/).map((part) => part[0]).join('').slice(0, 3)}
+      <span className="hidden text-[9px] text-text-muted text-center" style={{ display: logoUrl ? 'none' : 'block' }}>
+        {brand.domain || brand.name}
       </span>
       <span className="text-[9px] font-bold tracking-[0.08em] text-text-muted text-center leading-tight uppercase">
         {brand.name}
