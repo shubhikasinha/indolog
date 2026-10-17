@@ -1,11 +1,6 @@
 import { useState, useRef } from 'react';
 import { FaMapPin, FaPhone, FaEnvelope, FaLink, FaWhatsapp, FaCheckCircle, FaExclamationTriangle } from 'react-icons/fa';
-import emailjs from '@emailjs/browser';
 import InnerPageHero from '../components/InnerPageHero';
-
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
 export default function Contact() {
   const formRef = useRef(null);
@@ -14,21 +9,15 @@ export default function Contact() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      setErrorMessage('config');
-      setStatus('error');
-      return;
-    }
-
     setErrorMessage('send');
     setStatus('sending');
     try {
-      await emailjs.sendForm(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        { publicKey: EMAILJS_PUBLIC_KEY }
-      );
+      const response = await fetch('https://formsubmit.co/ajax/nikhil@indologindia.com', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: new FormData(formRef.current),
+      });
+      if (!response.ok) throw new Error(`FormSubmit returned ${response.status}`);
       setStatus('success');
       formRef.current.reset();
     } catch (error) {
@@ -158,7 +147,9 @@ export default function Contact() {
             )}
 
             <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-4">
-              <input type="hidden" name="to_email" value="nikhil@indologindia.com" />
+              <input type="hidden" name="_subject" value="New Indolog website enquiry" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="flex flex-col gap-1.5">
                   <label className="text-[10px] tracking-[0.15em] uppercase text-text-muted font-semibold">Your Name *</label>
