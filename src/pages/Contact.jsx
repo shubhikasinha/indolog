@@ -15,12 +15,12 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
-      setErrorMessage('Email delivery is not configured yet. Please email us directly at nikhil@indologindia.com.');
+      setErrorMessage('config');
       setStatus('error');
       return;
     }
 
-    setErrorMessage('We couldn’t send your email. Please try again or email nikhil@indologindia.com.');
+    setErrorMessage('send');
     setStatus('sending');
     try {
       await emailjs.sendForm(
@@ -149,7 +149,10 @@ export default function Contact() {
                 <FaExclamationTriangle className="text-red-600 text-xl shrink-0" />
                 <div>
                   <div className="font-semibold text-red-800 text-[14px]">We couldn’t send your email.</div>
-                  <div className="text-[12px] text-red-700 font-light mt-0.5">{errorMessage.includes('nikhil@') ? <>{errorMessage.split('nikhil@')[0]}<a href="mailto:nikhil@indologindia.com" className="underline">nikhil@indologindia.com</a>.</> : errorMessage}</div>
+                  <div className="text-[12px] text-red-700 font-light mt-0.5">
+                    {errorMessage === 'config' ? 'Email delivery is not configured yet. Please contact ' : 'Please try again or email '}
+                    <a href="mailto:nikhil@indologindia.com" className="underline">nikhil@indologindia.com</a>.
+                  </div>
                 </div>
               </div>
             )}
