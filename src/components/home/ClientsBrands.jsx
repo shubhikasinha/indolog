@@ -26,14 +26,14 @@ const brands = [
   { name: 'Landmark', domain: 'landmarkgroup.com' },
   { name: 'Pittarello', domain: 'pittarello.com' },
   { name: 'Sir Safety', domain: 'sirsafety.com' },
-  { name: 'Sajaco Nordic', domain: 'sajaco.dk' },
+  { name: 'Sajaco Nordic', domain: 'sajaconordic.com' },
   { name: 'Electa EV', domain: 'one-moto.com' },
   { name: 'Fonz N Leather', domain: 'fonzleatherstyles.com' },
-  { name: 'Moxy Wear (USA)', domain: 'moxy-wear.creator-spring.com' },
+  { name: 'Moxy Wear (USA)', domain: 'moxywear.net' },
   { name: 'Kaili Group', domain: 'store.kailigroup.it' },
   { name: 'Tessilform', domain: 'patriziapepe.com' },
   { name: 'Lola Spain', domain: 'lola.com.es' },
-  { name: 'Envisage', domain: 'envisage.com' },
+  { name: 'Envisage', domain: 'envisage.community' },
   { name: 'ClassPromotion', domain: 'classpromotion.com' },
 ];
 

@@ -192,7 +192,7 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ──────────────────────────────────────────── */}
-      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-20 h-full pt-28 pb-20 lg:pt-0 lg:pb-0">
+      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-20 h-full pt-28 pb-20 lg:pt-20 lg:pb-0">
 
         {/* Left — Hero text */}
         <motion.div
