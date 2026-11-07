@@ -192,7 +192,7 @@ export default function Hero() {
       </div>
 
       {/* ── Main content ──────────────────────────────────────────── */}
-      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-20 h-full pt-28 pb-20 lg:pt-20 lg:pb-0">
+      <div className="relative z-20 w-full max-w-[1320px] mx-auto px-6 md:px-12 flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-20 h-full pt-28 pb-20 lg:pt-28 lg:pb-0">
 
         {/* Left — Hero text */}
         <motion.div
@@ -209,7 +209,7 @@ export default function Hero() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-white/55 mb-4 font-semibold"
+                className="inline-flex items-center gap-2 text-[10px] tracking-[0.16em] uppercase text-white/55 mb-6 font-semibold"
               >
                 <span className="w-5 h-[1px] bg-gold/60 block" />
                 Connecting {geoLabel}
@@ -225,7 +225,7 @@ export default function Hero() {
           </div>
 
           {/* Headline — personalized subtitle when industry detected */}
-          <h1 className="font-lora text-[clamp(2.2rem,4.5vw,4rem)] leading-[1.18] tracking-[-0.025em] mb-9 drop-shadow-lg">
+          <h1 className="font-lora text-[clamp(2rem,3.8vw,3.4rem)] leading-[1.14] tracking-[-0.02em] mb-8 drop-shadow-lg">
             {personalized && industry ? (
               <>
                 Precision{' '}
@@ -239,12 +239,12 @@ export default function Hero() {
               <>
                 Door-to-door freight<br />
                 <em className="block mt-2 text-gold-light italic tracking-tight">+ independent QC</em>
-                <span className="block mt-6 text-white/85 text-[0.70em] leading-relaxed tracking-[0.01em]">One partner. One contract. Zero surprises.</span>
+                <span className="block mt-5 text-white/85 text-[0.64em] leading-[1.35] tracking-[0.01em]">One partner. One contract.<br />Zero surprises.</span>
               </>
             )}
           </h1>
 
-          <p className="text-[14px] text-white/65 leading-[2] mb-9 font-light max-w-[440px]">
+          <p className="text-[13px] text-white/65 leading-[1.9] mb-8 font-light max-w-[420px]">
             {personalized && industry
               ? industries.find(i => i.id === industry)?.desc
               : 'Freight forwarding + independent QC inspection — one trusted partner for India and 50+ countries. The only logistics company with its own 12,000 sq ft QC facility.'
