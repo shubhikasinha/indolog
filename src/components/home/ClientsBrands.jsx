@@ -3,12 +3,12 @@ const brands = [
   { name: 'Sandro', domain: 'sandro-paris.com' },
   { name: 'Zadig & Voltaire', domain: 'zadig-et-voltaire.com' },
   { name: 'Isabel Marant', domain: 'isabelmarant.com' },
-  { name: 'Paco Rabanne', domain: 'pacorabanne.com' },
+  { name: 'Paco Rabanne', domain: 'pacorabanne.com', logo: '/logo-paco-rabanne.png' },
   { name: 'Twin Set', domain: 'twinset.com' },
   { name: 'Hitachi', domain: 'hitachi.com' },
   { name: 'Tata', domain: 'tata.com' },
   { name: 'Dana', domain: 'dana.com' },
-  { name: 'Versace', domain: 'versace.com' },
+  { name: 'Versace', domain: 'versace.com', logo: '/logo-versace.png' },
   { name: 'Sun Pharma', domain: 'sunpharma.com' },
   { name: 'Liu Jo', domain: 'liujo.com' },
   { name: 'Hugo Boss', domain: 'hugoboss.com' },
@@ -17,7 +17,7 @@ const brands = [
   { name: 'MRF Tyres', domain: 'mrftyres.com' },
   { name: 'JK Papers', domain: 'jkpaper.com' },
   { name: 'Taj Hotels', domain: 'tajhotels.com' },
-  { name: 'JW Marriott', domain: 'marriott.com' },
+  { name: 'JW Marriott', domain: 'marriott.com', logo: '/logo-jw-marriott.jpg' },
   { name: 'Pan Parag', domain: 'panparag.com' },
   { name: 'Porsche', domain: 'porsche.com' },
   { name: 'Ara Shoes', domain: 'ara-shoes.com' },
@@ -32,15 +32,14 @@ const brands = [
   { name: 'Moxy Wear (USA)', domain: 'moxywear.net' },
   { name: 'Kaili Group', domain: 'store.kailigroup.it' },
   { name: 'Tessilform', domain: 'patriziapepe.com' },
-  { name: 'Lola Spain', domain: 'lola.com.es' },
+  { name: 'Lola Spain', domain: 'lola.com.es', logo: '/logo-lola-spain.jpeg' },
   { name: 'Envisage', domain: 'envisage.community' },
-  { name: 'ClassPromotion', domain: 'classpromotion.com' },
 ];
 
 function BrandCard({ brand }) {
-  const logoUrl = brand.domain
+  const logoUrl = brand.logo || (brand.domain
     ? `https://cdn.brandfetch.io/${brand.domain}/w/400/h/140`
-    : null;
+    : null);
 
   return (
     <div className="bg-white border border-border flex flex-col items-center justify-center gap-2 p-4 h-28 cursor-default">
